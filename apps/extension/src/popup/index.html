@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentinel</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <div id="app" class="popup">
+      <header class="popup__header">
+        <span class="popup__brand">Sentinel</span>
+        <label class="switch">
+          <input id="global-toggle" type="checkbox" />
+          <span class="switch__label">Enabled</span>
+        </label>
+      </header>
+      <main id="verdict" class="popup__verdict">
+        <p class="popup__placeholder">No verdict yet.</p>
+      </main>
+      <footer id="footer" class="popup__footer"></footer>
+    </div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
