@@ -1,0 +1,1129 @@
+[
+  {
+    "token": "google",
+    "etld1s": ["google.com", "google.co.nz", "google.co.uk", "google.com.au", "goo.gl"]
+  },
+  {
+    "token": "gmail",
+    "etld1s": ["gmail.com", "google.com"]
+  },
+  {
+    "token": "youtube",
+    "etld1s": ["youtube.com", "youtu.be"]
+  },
+  {
+    "token": "microsoft",
+    "etld1s": [
+      "microsoft.com",
+      "microsoftonline.com",
+      "live.com",
+      "office.com",
+      "office365.com",
+      "outlook.com"
+    ]
+  },
+  {
+    "token": "outlook",
+    "etld1s": ["outlook.com", "office.com", "microsoft.com"]
+  },
+  {
+    "token": "office",
+    "etld1s": ["office.com", "office365.com", "microsoft.com"]
+  },
+  {
+    "token": "office365",
+    "etld1s": ["office365.com", "office.com", "microsoft.com"]
+  },
+  {
+    "token": "hotmail",
+    "etld1s": ["hotmail.com", "outlook.com", "live.com"]
+  },
+  {
+    "token": "azure",
+    "etld1s": ["azure.com", "microsoft.com", "windows.net"]
+  },
+  {
+    "token": "onedrive",
+    "etld1s": ["onedrive.com", "microsoft.com", "live.com"]
+  },
+  {
+    "token": "apple",
+    "etld1s": ["apple.com", "icloud.com"]
+  },
+  {
+    "token": "icloud",
+    "etld1s": ["icloud.com", "apple.com"]
+  },
+  {
+    "token": "itunes",
+    "etld1s": ["apple.com", "itunes.com"]
+  },
+  {
+    "token": "amazon",
+    "etld1s": ["amazon.com", "amazon.co.uk", "amazon.com.au", "amazon.ca", "amazon.de"]
+  },
+  {
+    "token": "aws",
+    "etld1s": ["aws.amazon.com", "amazon.com"]
+  },
+  {
+    "token": "facebook",
+    "etld1s": ["facebook.com", "fb.com", "meta.com"]
+  },
+  {
+    "token": "messenger",
+    "etld1s": ["messenger.com", "facebook.com"]
+  },
+  {
+    "token": "instagram",
+    "etld1s": ["instagram.com", "facebook.com"]
+  },
+  {
+    "token": "whatsapp",
+    "etld1s": ["whatsapp.com", "facebook.com"]
+  },
+  {
+    "token": "meta",
+    "etld1s": ["meta.com", "facebook.com"]
+  },
+  {
+    "token": "netflix",
+    "etld1s": ["netflix.com"]
+  },
+  {
+    "token": "linkedin",
+    "etld1s": ["linkedin.com", "lnkd.in"]
+  },
+  {
+    "token": "twitter",
+    "etld1s": ["twitter.com", "x.com", "t.co"]
+  },
+  {
+    "token": "dropbox",
+    "etld1s": ["dropbox.com", "dropboxusercontent.com"]
+  },
+  {
+    "token": "adobe",
+    "etld1s": ["adobe.com"]
+  },
+  {
+    "token": "docusign",
+    "etld1s": ["docusign.com", "docusign.net"]
+  },
+  {
+    "token": "zoom",
+    "etld1s": ["zoom.us", "zoom.com"]
+  },
+  {
+    "token": "slack",
+    "etld1s": ["slack.com"]
+  },
+  {
+    "token": "salesforce",
+    "etld1s": ["salesforce.com", "force.com"]
+  },
+  {
+    "token": "github",
+    "etld1s": ["github.com", "githubusercontent.com", "github.io"]
+  },
+  {
+    "token": "gitlab",
+    "etld1s": ["gitlab.com"]
+  },
+  {
+    "token": "spotify",
+    "etld1s": ["spotify.com"]
+  },
+  {
+    "token": "steam",
+    "etld1s": ["steampowered.com", "steamcommunity.com"]
+  },
+  {
+    "token": "discord",
+    "etld1s": ["discord.com", "discord.gg"]
+  },
+  {
+    "token": "telegram",
+    "etld1s": ["telegram.org", "t.me"]
+  },
+  {
+    "token": "tiktok",
+    "etld1s": ["tiktok.com"]
+  },
+  {
+    "token": "snapchat",
+    "etld1s": ["snapchat.com"]
+  },
+  {
+    "token": "reddit",
+    "etld1s": ["reddit.com", "redd.it"]
+  },
+  {
+    "token": "pinterest",
+    "etld1s": ["pinterest.com", "pin.it"]
+  },
+  {
+    "token": "ebay",
+    "etld1s": ["ebay.com", "ebay.co.uk", "ebay.com.au"]
+  },
+  {
+    "token": "walmart",
+    "etld1s": ["walmart.com"]
+  },
+  {
+    "token": "target",
+    "etld1s": ["target.com"]
+  },
+  {
+    "token": "bestbuy",
+    "etld1s": ["bestbuy.com"]
+  },
+  {
+    "token": "costco",
+    "etld1s": ["costco.com"]
+  },
+  {
+    "token": "aliexpress",
+    "etld1s": ["aliexpress.com"]
+  },
+  {
+    "token": "alibaba",
+    "etld1s": ["alibaba.com"]
+  },
+  {
+    "token": "fedex",
+    "etld1s": ["fedex.com"]
+  },
+  {
+    "token": "dhl",
+    "etld1s": ["dhl.com", "dhl.de"]
+  },
+  {
+    "token": "ups",
+    "etld1s": ["ups.com"]
+  },
+  {
+    "token": "usps",
+    "etld1s": ["usps.com"]
+  },
+  {
+    "token": "nzpost",
+    "etld1s": ["nzpost.co.nz"]
+  },
+  {
+    "token": "aramex",
+    "etld1s": ["aramex.com"]
+  },
+  {
+    "token": "dpd",
+    "etld1s": ["dpd.com", "dpd.co.uk"]
+  },
+  {
+    "token": "evri",
+    "etld1s": ["evri.com", "myhermes.co.uk"]
+  },
+  {
+    "token": "royalmail",
+    "etld1s": ["royalmail.com"]
+  },
+  {
+    "token": "chase",
+    "etld1s": ["chase.com"]
+  },
+  {
+    "token": "bankofamerica",
+    "etld1s": ["bankofamerica.com", "bofa.com"]
+  },
+  {
+    "token": "wellsfargo",
+    "etld1s": ["wellsfargo.com"]
+  },
+  {
+    "token": "citibank",
+    "etld1s": ["citibank.com", "citi.com"]
+  },
+  {
+    "token": "capitalone",
+    "etld1s": ["capitalone.com"]
+  },
+  {
+    "token": "americanexpress",
+    "etld1s": ["americanexpress.com", "amex.com"]
+  },
+  {
+    "token": "discover",
+    "etld1s": ["discover.com"]
+  },
+  {
+    "token": "hsbc",
+    "etld1s": ["hsbc.com", "hsbc.co.uk", "hsbc.com.au"]
+  },
+  {
+    "token": "barclays",
+    "etld1s": ["barclays.co.uk", "barclays.com"]
+  },
+  {
+    "token": "lloyds",
+    "etld1s": ["lloydsbank.com", "lloydsbank.co.uk"]
+  },
+  {
+    "token": "natwest",
+    "etld1s": ["natwest.com"]
+  },
+  {
+    "token": "santander",
+    "etld1s": ["santander.com", "santander.co.uk"]
+  },
+  {
+    "token": "deutschebank",
+    "etld1s": ["deutschebank.de", "db.com"]
+  },
+  {
+    "token": "ing",
+    "etld1s": ["ing.com", "ing.nl", "ing.com.au"]
+  },
+  {
+    "token": "paypal",
+    "etld1s": ["paypal.com", "paypal.me", "paypal.com.au"]
+  },
+  {
+    "token": "venmo",
+    "etld1s": ["venmo.com", "paypal.com"]
+  },
+  {
+    "token": "cashapp",
+    "etld1s": ["cash.app", "square.com"]
+  },
+  {
+    "token": "revolut",
+    "etld1s": ["revolut.com"]
+  },
+  {
+    "token": "wise",
+    "etld1s": ["wise.com", "transferwise.com"]
+  },
+  {
+    "token": "stripe",
+    "etld1s": ["stripe.com"]
+  },
+  {
+    "token": "square",
+    "etld1s": ["square.com", "squareup.com"]
+  },
+  {
+    "token": "coinbase",
+    "etld1s": ["coinbase.com"]
+  },
+  {
+    "token": "binance",
+    "etld1s": ["binance.com"]
+  },
+  {
+    "token": "kraken",
+    "etld1s": ["kraken.com"]
+  },
+  {
+    "token": "metamask",
+    "etld1s": ["metamask.io"]
+  },
+  {
+    "token": "bitcoin",
+    "etld1s": ["bitcoin.org"]
+  },
+  {
+    "token": "ethereum",
+    "etld1s": ["ethereum.org"]
+  },
+  {
+    "token": "robinhood",
+    "etld1s": ["robinhood.com"]
+  },
+  {
+    "token": "fidelity",
+    "etld1s": ["fidelity.com"]
+  },
+  {
+    "token": "schwab",
+    "etld1s": ["schwab.com"]
+  },
+  {
+    "token": "vanguard",
+    "etld1s": ["vanguard.com"]
+  },
+  {
+    "token": "xero",
+    "etld1s": ["xero.com", "xero.co.nz", "xero.com.au"]
+  },
+  {
+    "token": "myob",
+    "etld1s": ["myob.com", "myob.com.au", "myob.co.nz"]
+  },
+  {
+    "token": "quickbooks",
+    "etld1s": ["quickbooks.intuit.com", "intuit.com"]
+  },
+  {
+    "token": "intuit",
+    "etld1s": ["intuit.com"]
+  },
+  {
+    "token": "sage",
+    "etld1s": ["sage.com", "sage.co.uk"]
+  },
+  {
+    "token": "turbotax",
+    "etld1s": ["turbotax.intuit.com", "intuit.com"]
+  },
+  {
+    "token": "hnry",
+    "etld1s": ["hnry.co.nz"]
+  },
+  {
+    "token": "ato",
+    "etld1s": ["ato.gov.au"]
+  },
+  {
+    "token": "ird",
+    "etld1s": ["ird.govt.nz"]
+  },
+  {
+    "token": "realme",
+    "etld1s": ["realme.govt.nz", "realmeglobal.co.nz"]
+  },
+  {
+    "token": "kiwibank",
+    "etld1s": ["kiwibank.co.nz"]
+  },
+  {
+    "token": "anz",
+    "etld1s": ["anz.co.nz", "anz.com.au", "anz.com"]
+  },
+  {
+    "token": "asb",
+    "etld1s": ["asb.co.nz"]
+  },
+  {
+    "token": "bnz",
+    "etld1s": ["bnz.co.nz"]
+  },
+  {
+    "token": "westpac",
+    "etld1s": ["westpac.co.nz", "westpac.com.au"]
+  },
+  {
+    "token": "tsb",
+    "etld1s": ["tsb.co.nz", "tsb.co.uk"]
+  },
+  {
+    "token": "heartland",
+    "etld1s": ["heartland.co.nz", "heartlandbank.com.au"]
+  },
+  {
+    "token": "rabobank",
+    "etld1s": ["rabobank.co.nz", "rabobank.com.au", "rabobank.com"]
+  },
+  {
+    "token": "cooperativebank",
+    "etld1s": ["co-operativebank.co.nz"]
+  },
+  {
+    "token": "bankwest",
+    "etld1s": ["bankwest.com.au"]
+  },
+  {
+    "token": "commbank",
+    "etld1s": ["commbank.com.au", "netbank.com.au"]
+  },
+  {
+    "token": "nab",
+    "etld1s": ["nab.com.au"]
+  },
+  {
+    "token": "stgeorge",
+    "etld1s": ["stgeorge.com.au"]
+  },
+  {
+    "token": "macquarie",
+    "etld1s": ["macquarie.com.au", "macquarie.com"]
+  },
+  {
+    "token": "bendigo",
+    "etld1s": ["bendigobank.com.au"]
+  },
+  {
+    "token": "adelaidebank",
+    "etld1s": ["adelaidebank.com.au"]
+  },
+  {
+    "token": "ubank",
+    "etld1s": ["ubank.com.au"]
+  },
+  {
+    "token": "afterpay",
+    "etld1s": ["afterpay.com", "afterpay.com.au"]
+  },
+  {
+    "token": "zippay",
+    "etld1s": ["zip.co", "zipmoney.com.au"]
+  },
+  {
+    "token": "latitude",
+    "etld1s": ["latitude.com.au", "latitudefinancial.com"]
+  },
+  {
+    "token": "humm",
+    "etld1s": ["humm.com.au", "hummgroup.com"]
+  },
+  {
+    "token": "trade",
+    "etld1s": ["trademe.co.nz"]
+  },
+  {
+    "token": "trademe",
+    "etld1s": ["trademe.co.nz"]
+  },
+  {
+    "token": "spark",
+    "etld1s": ["spark.co.nz", "sparknz.co.nz"]
+  },
+  {
+    "token": "one",
+    "etld1s": ["one.nz", "vodafone.co.nz"]
+  },
+  {
+    "token": "vodafone",
+    "etld1s": ["vodafone.co.nz", "vodafone.com.au", "vodafone.com"]
+  },
+  {
+    "token": "2degrees",
+    "etld1s": ["2degrees.nz"]
+  },
+  {
+    "token": "skinny",
+    "etld1s": ["skinny.co.nz"]
+  },
+  {
+    "token": "chorus",
+    "etld1s": ["chorus.co.nz"]
+  },
+  {
+    "token": "telstra",
+    "etld1s": ["telstra.com.au", "telstra.com"]
+  },
+  {
+    "token": "optus",
+    "etld1s": ["optus.com.au"]
+  },
+  {
+    "token": "tpg",
+    "etld1s": ["tpg.com.au", "tpgtelecom.com.au"]
+  },
+  {
+    "token": "vocus",
+    "etld1s": ["vocus.com.au", "vocusgroup.com.au"]
+  },
+  {
+    "token": "okta",
+    "etld1s": ["okta.com", "oktapreview.com"]
+  },
+  {
+    "token": "auth0",
+    "etld1s": ["auth0.com"]
+  },
+  {
+    "token": "onelogin",
+    "etld1s": ["onelogin.com"]
+  },
+  {
+    "token": "pingidentity",
+    "etld1s": ["pingidentity.com", "pingone.com"]
+  },
+  {
+    "token": "duo",
+    "etld1s": ["duosecurity.com", "duo.com"]
+  },
+  {
+    "token": "cloudflare",
+    "etld1s": ["cloudflare.com", "cloudflareaccess.com"]
+  },
+  {
+    "token": "vercel",
+    "etld1s": ["vercel.com", "vercel.app"]
+  },
+  {
+    "token": "netlify",
+    "etld1s": ["netlify.com", "netlify.app"]
+  },
+  {
+    "token": "heroku",
+    "etld1s": ["heroku.com", "herokuapp.com"]
+  },
+  {
+    "token": "digitalocean",
+    "etld1s": ["digitalocean.com"]
+  },
+  {
+    "token": "godaddy",
+    "etld1s": ["godaddy.com"]
+  },
+  {
+    "token": "namecheap",
+    "etld1s": ["namecheap.com"]
+  },
+  {
+    "token": "squarespace",
+    "etld1s": ["squarespace.com"]
+  },
+  {
+    "token": "wix",
+    "etld1s": ["wix.com", "wixsite.com"]
+  },
+  {
+    "token": "shopify",
+    "etld1s": ["shopify.com", "myshopify.com"]
+  },
+  {
+    "token": "bigcommerce",
+    "etld1s": ["bigcommerce.com", "mybigcommerce.com"]
+  },
+  {
+    "token": "woocommerce",
+    "etld1s": ["woocommerce.com"]
+  },
+  {
+    "token": "magento",
+    "etld1s": ["magento.com", "adobe.com"]
+  },
+  {
+    "token": "prestashop",
+    "etld1s": ["prestashop.com"]
+  },
+  {
+    "token": "mit",
+    "etld1s": ["mit.edu"]
+  },
+  {
+    "token": "harvard",
+    "etld1s": ["harvard.edu"]
+  },
+  {
+    "token": "stanford",
+    "etld1s": ["stanford.edu"]
+  },
+  {
+    "token": "oxford",
+    "etld1s": ["ox.ac.uk"]
+  },
+  {
+    "token": "cambridge",
+    "etld1s": ["cam.ac.uk"]
+  },
+  {
+    "token": "auckland",
+    "etld1s": ["auckland.ac.nz"]
+  },
+  {
+    "token": "otago",
+    "etld1s": ["otago.ac.nz"]
+  },
+  {
+    "token": "canterbury",
+    "etld1s": ["canterbury.ac.nz"]
+  },
+  {
+    "token": "victoria",
+    "etld1s": ["victoria.ac.nz", "wgtn.ac.nz"]
+  },
+  {
+    "token": "waikato",
+    "etld1s": ["waikato.ac.nz"]
+  },
+  {
+    "token": "massey",
+    "etld1s": ["massey.ac.nz"]
+  },
+  {
+    "token": "aut",
+    "etld1s": ["aut.ac.nz"]
+  },
+  {
+    "token": "monash",
+    "etld1s": ["monash.edu", "monash.edu.au"]
+  },
+  {
+    "token": "unimelb",
+    "etld1s": ["unimelb.edu.au"]
+  },
+  {
+    "token": "usyd",
+    "etld1s": ["sydney.edu.au"]
+  },
+  {
+    "token": "unsw",
+    "etld1s": ["unsw.edu.au"]
+  },
+  {
+    "token": "uq",
+    "etld1s": ["uq.edu.au"]
+  },
+  {
+    "token": "adelaide",
+    "etld1s": ["adelaide.edu.au"]
+  },
+  {
+    "token": "anu",
+    "etld1s": ["anu.edu.au"]
+  },
+  {
+    "token": "airnewzealand",
+    "etld1s": ["airnewzealand.co.nz", "airnewzealand.com"]
+  },
+  {
+    "token": "qantas",
+    "etld1s": ["qantas.com"]
+  },
+  {
+    "token": "jetstar",
+    "etld1s": ["jetstar.com"]
+  },
+  {
+    "token": "airbnb",
+    "etld1s": ["airbnb.com", "airbnb.co.nz"]
+  },
+  {
+    "token": "booking",
+    "etld1s": ["booking.com"]
+  },
+  {
+    "token": "expedia",
+    "etld1s": ["expedia.com", "expedia.co.nz"]
+  },
+  {
+    "token": "uber",
+    "etld1s": ["uber.com"]
+  },
+  {
+    "token": "lyft",
+    "etld1s": ["lyft.com"]
+  },
+  {
+    "token": "doordash",
+    "etld1s": ["doordash.com"]
+  },
+  {
+    "token": "ubereats",
+    "etld1s": ["ubereats.com", "uber.com"]
+  },
+  {
+    "token": "menulog",
+    "etld1s": ["menulog.co.nz", "menulog.com.au"]
+  },
+  {
+    "token": "hellofresh",
+    "etld1s": ["hellofresh.com", "hellofresh.co.nz"]
+  },
+  {
+    "token": "countdown",
+    "etld1s": ["countdown.co.nz", "woolworths.co.nz"]
+  },
+  {
+    "token": "woolworths",
+    "etld1s": ["woolworths.co.nz", "woolworths.com.au"]
+  },
+  {
+    "token": "paknsave",
+    "etld1s": ["paknsave.co.nz"]
+  },
+  {
+    "token": "newworld",
+    "etld1s": ["newworld.co.nz"]
+  },
+  {
+    "token": "mitre10",
+    "etld1s": ["mitre10.co.nz"]
+  },
+  {
+    "token": "thewarehouse",
+    "etld1s": ["thewarehouse.co.nz"]
+  },
+  {
+    "token": "farmers",
+    "etld1s": ["farmers.co.nz"]
+  },
+  {
+    "token": "briscoes",
+    "etld1s": ["briscoes.co.nz"]
+  },
+  {
+    "token": "rebel",
+    "etld1s": ["rebel.co.nz", "rebelsport.com.au"]
+  },
+  {
+    "token": "noel",
+    "etld1s": ["noelleeming.co.nz"]
+  },
+  {
+    "token": "jb",
+    "etld1s": ["jbhifi.co.nz", "jbhifi.com.au"]
+  },
+  {
+    "token": "harveynorman",
+    "etld1s": ["harveynorman.co.nz", "harveynorman.com.au"]
+  },
+  {
+    "token": "kogan",
+    "etld1s": ["kogan.com"]
+  },
+  {
+    "token": "temu",
+    "etld1s": ["temu.com"]
+  },
+  {
+    "token": "shein",
+    "etld1s": ["shein.com"]
+  },
+  {
+    "token": "etsy",
+    "etld1s": ["etsy.com"]
+  },
+  {
+    "token": "shopee",
+    "etld1s": ["shopee.com", "shopee.sg"]
+  },
+  {
+    "token": "lazada",
+    "etld1s": ["lazada.com"]
+  },
+  {
+    "token": "rakuten",
+    "etld1s": ["rakuten.com", "rakuten.co.jp"]
+  },
+  {
+    "token": "yahoo",
+    "etld1s": ["yahoo.com", "yahoo.co.jp", "yahoo.co.nz"]
+  },
+  {
+    "token": "bing",
+    "etld1s": ["bing.com", "microsoft.com"]
+  },
+  {
+    "token": "duckduckgo",
+    "etld1s": ["duckduckgo.com"]
+  },
+  {
+    "token": "protonmail",
+    "etld1s": ["proton.me", "protonmail.com"]
+  },
+  {
+    "token": "proton",
+    "etld1s": ["proton.me", "protonmail.com"]
+  },
+  {
+    "token": "zoho",
+    "etld1s": ["zoho.com"]
+  },
+  {
+    "token": "mailchimp",
+    "etld1s": ["mailchimp.com"]
+  },
+  {
+    "token": "hubspot",
+    "etld1s": ["hubspot.com"]
+  },
+  {
+    "token": "atlassian",
+    "etld1s": ["atlassian.com", "atlassian.net"]
+  },
+  {
+    "token": "jira",
+    "etld1s": ["atlassian.com", "atlassian.net"]
+  },
+  {
+    "token": "trello",
+    "etld1s": ["trello.com", "atlassian.com"]
+  },
+  {
+    "token": "asana",
+    "etld1s": ["asana.com"]
+  },
+  {
+    "token": "notion",
+    "etld1s": ["notion.so", "notion.site"]
+  },
+  {
+    "token": "airtable",
+    "etld1s": ["airtable.com"]
+  },
+  {
+    "token": "monday",
+    "etld1s": ["monday.com"]
+  },
+  {
+    "token": "canva",
+    "etld1s": ["canva.com"]
+  },
+  {
+    "token": "figma",
+    "etld1s": ["figma.com"]
+  },
+  {
+    "token": "openai",
+    "etld1s": ["openai.com", "chatgpt.com"]
+  },
+  {
+    "token": "chatgpt",
+    "etld1s": ["chatgpt.com", "openai.com"]
+  },
+  {
+    "token": "anthropic",
+    "etld1s": ["anthropic.com", "claude.ai"]
+  },
+  {
+    "token": "claude",
+    "etld1s": ["claude.ai", "anthropic.com"]
+  },
+  {
+    "token": "nvidia",
+    "etld1s": ["nvidia.com"]
+  },
+  {
+    "token": "intel",
+    "etld1s": ["intel.com"]
+  },
+  {
+    "token": "amd",
+    "etld1s": ["amd.com"]
+  },
+  {
+    "token": "dell",
+    "etld1s": ["dell.com"]
+  },
+  {
+    "token": "hp",
+    "etld1s": ["hp.com"]
+  },
+  {
+    "token": "lenovo",
+    "etld1s": ["lenovo.com"]
+  },
+  {
+    "token": "samsung",
+    "etld1s": ["samsung.com"]
+  },
+  {
+    "token": "sony",
+    "etld1s": ["sony.com"]
+  },
+  {
+    "token": "lg",
+    "etld1s": ["lg.com"]
+  },
+  {
+    "token": "canon",
+    "etld1s": ["canon.com"]
+  },
+  {
+    "token": "epson",
+    "etld1s": ["epson.com"]
+  },
+  {
+    "token": "nike",
+    "etld1s": ["nike.com"]
+  },
+  {
+    "token": "adidas",
+    "etld1s": ["adidas.com"]
+  },
+  {
+    "token": "puma",
+    "etld1s": ["puma.com"]
+  },
+  {
+    "token": "underarmour",
+    "etld1s": ["underarmour.com"]
+  },
+  {
+    "token": "mcdonalds",
+    "etld1s": ["mcdonalds.com"]
+  },
+  {
+    "token": "starbucks",
+    "etld1s": ["starbucks.com"]
+  },
+  {
+    "token": "kfc",
+    "etld1s": ["kfc.com"]
+  },
+  {
+    "token": "dominos",
+    "etld1s": ["dominos.com", "dominos.co.nz"]
+  },
+  {
+    "token": "pizzahut",
+    "etld1s": ["pizzahut.com"]
+  },
+  {
+    "token": "subway",
+    "etld1s": ["subway.com"]
+  },
+  {
+    "token": "burgerking",
+    "etld1s": ["burgerking.com"]
+  },
+  {
+    "token": "wendys",
+    "etld1s": ["wendys.com"]
+  },
+  {
+    "token": "coca-cola",
+    "etld1s": ["coca-cola.com", "coke.com"]
+  },
+  {
+    "token": "pepsi",
+    "etld1s": ["pepsi.com"]
+  },
+  {
+    "token": "nestle",
+    "etld1s": ["nestle.com"]
+  },
+  {
+    "token": "unilever",
+    "etld1s": ["unilever.com"]
+  },
+  {
+    "token": "pg",
+    "etld1s": ["pg.com"]
+  },
+  {
+    "token": "johnson",
+    "etld1s": ["jnj.com"]
+  },
+  {
+    "token": "pfizer",
+    "etld1s": ["pfizer.com"]
+  },
+  {
+    "token": "moderna",
+    "etld1s": ["moderna.com"]
+  },
+  {
+    "token": "astrazeneca",
+    "etld1s": ["astrazeneca.com"]
+  },
+  {
+    "token": "boeing",
+    "etld1s": ["boeing.com"]
+  },
+  {
+    "token": "airbus",
+    "etld1s": ["airbus.com"]
+  },
+  {
+    "token": "tesla",
+    "etld1s": ["tesla.com"]
+  },
+  {
+    "token": "ford",
+    "etld1s": ["ford.com"]
+  },
+  {
+    "token": "toyota",
+    "etld1s": ["toyota.com"]
+  },
+  {
+    "token": "honda",
+    "etld1s": ["honda.com"]
+  },
+  {
+    "token": "bmw",
+    "etld1s": ["bmw.com"]
+  },
+  {
+    "token": "mercedes",
+    "etld1s": ["mercedes-benz.com"]
+  },
+  {
+    "token": "volkswagen",
+    "etld1s": ["volkswagen.com", "vw.com"]
+  },
+  {
+    "token": "hyundai",
+    "etld1s": ["hyundai.com"]
+  },
+  {
+    "token": "kia",
+    "etld1s": ["kia.com"]
+  },
+  {
+    "token": "subaru",
+    "etld1s": ["subaru.com"]
+  },
+  {
+    "token": "mazda",
+    "etld1s": ["mazda.com"]
+  },
+  {
+    "token": "nissan",
+    "etld1s": ["nissan.com"]
+  },
+  {
+    "token": "geico",
+    "etld1s": ["geico.com"]
+  },
+  {
+    "token": "statefarm",
+    "etld1s": ["statefarm.com"]
+  },
+  {
+    "token": "allstate",
+    "etld1s": ["allstate.com"]
+  },
+  {
+    "token": "progressive",
+    "etld1s": ["progressive.com"]
+  },
+  {
+    "token": "aia",
+    "etld1s": ["aia.com", "aia.co.nz"]
+  },
+  {
+    "token": "southerncross",
+    "etld1s": ["southerncross.co.nz"]
+  },
+  {
+    "token": "aa",
+    "etld1s": ["aa.co.nz", "aainsurance.co.nz"]
+  },
+  {
+    "token": "state",
+    "etld1s": ["state.co.nz"]
+  },
+  {
+    "token": "tower",
+    "etld1s": ["tower.co.nz"]
+  },
+  {
+    "token": "workandincome",
+    "etld1s": ["workandincome.govt.nz", "msd.govt.nz"]
+  },
+  {
+    "token": "studylink",
+    "etld1s": ["studylink.govt.nz"]
+  },
+  {
+    "token": "nzta",
+    "etld1s": ["nzta.govt.nz"]
+  },
+  {
+    "token": "acc",
+    "etld1s": ["acc.co.nz"]
+  },
+  {
+    "token": "healthnz",
+    "etld1s": ["health.govt.nz"]
+  },
+  {
+    "token": "myir",
+    "etld1s": ["myir.ird.govt.nz", "ird.govt.nz"]
+  }
+]
