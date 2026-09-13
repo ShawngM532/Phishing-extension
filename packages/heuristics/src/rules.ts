@@ -55,15 +55,15 @@ export const RULES: readonly Rule[] = [
     (f) =>
       feat(f, FEATURE_INDEX.in_tranco_50k) === 0 && feat(f, FEATURE_INDEX.brand_lookalike_host) < 1,
   ),
-  rule('URL_NO_HTTPS', 0.25, (f) => feat(f, FEATURE_INDEX.is_https) === 0),
+  rule('URL_NO_HTTPS', 0.2, (f) => feat(f, FEATURE_INDEX.is_https) === 0),
   rule('URL_RISKY_TLD', 0.3, (f) => feat(f, FEATURE_INDEX.tld_risk) >= 0.5),
   rule('URL_AT_SYMBOL', 0.3, (f) => feat(f, FEATURE_INDEX.has_at_symbol) === 1),
-  rule('URL_NONSTANDARD_PORT', 0.2, (f) => feat(f, FEATURE_INDEX.nonstandard_port) === 1),
+  rule('URL_NONSTANDARD_PORT', 0.1, (f) => feat(f, FEATURE_INDEX.nonstandard_port) === 1),
   rule('URL_LONG_HOST', 0.15, (f) => feat(f, FEATURE_INDEX.host_len) > 30),
   rule('URL_MANY_SUBDOMAINS', 0.2, (f) => feat(f, FEATURE_INDEX.num_subdomains) >= 3),
   rule('URL_ENTROPY', 0.2, (f) => feat(f, FEATURE_INDEX.host_entropy) > 3.5),
   rule('URL_HEX_PATH', 0.2, (f) => feat(f, FEATURE_INDEX.hex_ratio_path) > 0.4),
-  rule('URL_EXE_EXT', 0.1, (f) => feat(f, FEATURE_INDEX.has_file_ext_html_php) === 1),
+  rule('URL_EXE_EXT', 0.05, (f) => feat(f, FEATURE_INDEX.has_file_ext_html_php) === 1),
 
   // DOM signals
   rule(

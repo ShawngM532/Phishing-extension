@@ -1,5 +1,6 @@
 import type { Verdict } from '@sentinel/heuristics';
 
+import type { Settings } from '../background/settings';
 import type { TabState } from './types';
 
 export type Stage = 1 | 2;
@@ -9,6 +10,7 @@ export interface ScoreRequestPayload {
   features: number[];
   stage: Stage;
   formAddedAfterLoad: boolean;
+  extractionMs?: number;
 }
 
 export interface UrlPayload {
@@ -23,6 +25,8 @@ export type Message =
   | { type: 'SCORE_REQUEST'; payload: ScoreRequestPayload }
   | { type: 'SCORE_RESULT'; payload: { verdict: Verdict } }
   | { type: 'GET_TAB_STATE'; payload: TabPayload }
+  | { type: 'GET_SETTINGS'; payload: Record<string, never> }
+  | { type: 'SET_ENABLED'; payload: { enabled: boolean } }
   | { type: 'SET_ALLOWLIST'; payload: { etld1: string; allow: boolean } }
   | { type: 'PROCEED'; payload: TabPayload }
   | { type: 'DISMISS'; payload: TabPayload }
@@ -34,6 +38,8 @@ export interface ResponseMap {
   SCORE_REQUEST: { verdict: Verdict };
   SCORE_RESULT: { ok: true };
   GET_TAB_STATE: { state: TabState | null };
+  GET_SETTINGS: { settings: Settings };
+  SET_ENABLED: { settings: Settings };
   SET_ALLOWLIST: { allowlist: string[] };
   PROCEED: { ok: true };
   DISMISS: { ok: true };
@@ -55,6 +61,8 @@ const RESPONSE_MAP_KEYS: Record<MessageType, true> = {
   SCORE_REQUEST: true,
   SCORE_RESULT: true,
   GET_TAB_STATE: true,
+  GET_SETTINGS: true,
+  SET_ENABLED: true,
   SET_ALLOWLIST: true,
   PROCEED: true,
   DISMISS: true,
