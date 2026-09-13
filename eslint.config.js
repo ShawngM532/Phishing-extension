@@ -25,7 +25,7 @@ export default tseslint.config(
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ['*.config.ts', '*.config.js', 'eslint.config.js'],
+          allowDefaultProject: ['*.config.js', 'eslint.config.js'],
         },
         tsconfigRootDir: import.meta.dirname,
       },
@@ -41,6 +41,14 @@ export default tseslint.config(
   {
     files: ['**/*.js', '**/*.mjs', '**/*.cjs'],
     extends: [tseslint.configs.disableTypeChecked],
+    languageOptions: {
+      globals: {
+        Buffer: 'readonly',
+        console: 'readonly',
+        process: 'readonly',
+        URL: 'readonly',
+      },
+    },
   },
   {
     files: ['**/*.test.ts', '**/*.spec.ts'],
