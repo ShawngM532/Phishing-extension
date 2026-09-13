@@ -32,7 +32,7 @@ Format: **#N — Title** · date · status · context · decision · consequence
 **Status:** Accepted
 **Source:** AGENT-CHECKLIST §2.1 (which names `src/background/index.ts` and `src/content/index.ts`)
 
-**Context.** With both entries named `index.ts`, `@crxjs/vite-plugin` 2.7.1 emits colliding chunk names and the generated `service-worker-loader.js` imported the *content script* chunk instead of the background chunk. Result: zero background listeners registered, no tab state, and the smoke test failed. Confirmed by inspecting `dist/service-worker-loader.js` and the emitted chunks.
+**Context.** With both entries named `index.ts`, `@crxjs/vite-plugin` 2.7.1 emits colliding chunk names and the generated `service-worker-loader.js` imported the _content script_ chunk instead of the background chunk. Result: zero background listeners registered, no tab state, and the smoke test failed. Confirmed by inspecting `dist/service-worker-loader.js` and the emitted chunks.
 
 **Decision.** Rename the two entries to unique basenames: `src/background/service-worker.ts` and `src/content/content-script.ts`. The manifest points at the new paths. Functionally identical to the checklist; only the file names differ.
 
