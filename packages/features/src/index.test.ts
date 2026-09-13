@@ -1,10 +1,20 @@
 import { describe, expect, it } from 'vitest';
 
-import { PACKAGE_NAME, placeholder } from './index';
+import { EXTRACTOR_VERSION, extractStage1, FEATURE_COUNT, parseUrl } from './index';
 
-describe('features package placeholder', () => {
-  it('exposes its package name', () => {
-    expect(PACKAGE_NAME).toBe('@sentinel/features');
-    expect(placeholder()).toBe(PACKAGE_NAME);
+describe('@sentinel/features public API', () => {
+  it('exposes the extractor version and feature count', () => {
+    expect(EXTRACTOR_VERSION).toBe(1);
+    expect(FEATURE_COUNT).toBe(53);
+  });
+
+  it('extracts a stage 1 vector', () => {
+    const vector = extractStage1('https://example.com/login');
+    expect(vector).not.toBeNull();
+    expect(vector?.length).toBe(FEATURE_COUNT);
+  });
+
+  it('exposes URL parsing', () => {
+    expect(parseUrl('https://example.com')?.etld1).toBe('example.com');
   });
 });

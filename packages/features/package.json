@@ -14,5 +14,12 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "bench": "vitest bench --run --passWithNoTests"
+  },
+  "dependencies": {
+    "tldts": "^7.4.12"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^30.0.0",
+    "jsdom": "^30.0.1"
   }
 }
