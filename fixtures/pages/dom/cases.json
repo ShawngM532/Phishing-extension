@@ -1,0 +1,41 @@
+[
+  { "name": "simple-benign", "file": "simple-benign.html", "url": "https://example.com/" },
+  { "name": "login-same-origin", "file": "login-same-origin.html", "url": "https://example.com/login" },
+  {
+    "name": "login-external-action",
+    "file": "login-external-action.html",
+    "url": "https://example.com/login"
+  },
+  { "name": "login-empty-action", "file": "login-empty-action.html", "url": "https://example.com/login" },
+  { "name": "login-js-action", "file": "login-js-action.html", "url": "https://example.com/login" },
+  { "name": "hidden-inputs", "file": "hidden-inputs.html", "url": "https://example.com/login" },
+  { "name": "external-scripts", "file": "external-scripts.html", "url": "https://example.com/" },
+  { "name": "iframes", "file": "iframes.html", "url": "https://example.com/" },
+  { "name": "meta-refresh", "file": "meta-refresh.html", "url": "https://example.com/" },
+  {
+    "name": "title-brand-mismatch",
+    "file": "title-brand-mismatch.html",
+    "url": "https://example.com/login"
+  },
+  {
+    "name": "copyright-brand-mismatch",
+    "file": "copyright-brand-mismatch.html",
+    "url": "https://example.com/login"
+  },
+  { "name": "anchors", "file": "anchors.html", "url": "https://example.com/" },
+  { "name": "login-http", "file": "login-http.html", "url": "http://example.com/login" },
+  { "name": "lang-mismatch", "file": "lang-mismatch.html", "url": "https://example.de/" },
+  { "name": "large-dom", "file": "large-dom.html", "url": "https://example.com/" },
+  {
+    "name": "form-added-after-load",
+    "file": "login-same-origin.html",
+    "url": "https://example.com/login",
+    "formAddedAfterLoad": true
+  },
+  {
+    "name": "password-in-subframe",
+    "file": "login-same-origin.html",
+    "url": "https://widget.example.net/login",
+    "isSubFrame": true
+  }
+]

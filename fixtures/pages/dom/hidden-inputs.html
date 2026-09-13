@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sign in</title>
+  </head>
+  <body>
+    <form action="/session" method="post">
+      <input type="hidden" name="csrf" value="abc" />
+      <input type="hidden" name="next" value="/home" />
+      <input type="password" name="pass" />
+      <button type="submit">Sign in</button>
+    </form>
+  </body>
+</html>
