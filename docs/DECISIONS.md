@@ -23,3 +23,44 @@ Format: **#N — Title** · date · status · context · decision · consequence
 - The model export format is custom and versioned (`format_version`, `extractor_version`, `model_version`); we own the parser (`packages/engine-wasm/src/format.rs`).
 - `EXTRACTOR_VERSION` must be bumped whenever feature semantics change, and the model must be retrained; the WASM engine refuses to load a model whose extractor version mismatches.
 - A TypeScript heuristic engine (`packages/heuristics`) is kept as a permanent fallback for when the model is missing, corrupt, or mismatched.
+
+---
+
+## #2 — MV3 entry files use unique basenames (`service-worker.ts`, `content-script.ts`)
+
+**Date:** 2026-09-14
+**Status:** Accepted
+**Source:** AGENT-CHECKLIST §2.1 (which names `src/background/index.ts` and `src/content/index.ts`)
+
+**Context.** With both entries named `index.ts`, `@crxjs/vite-plugin` 2.7.1 emits colliding chunk names and the generated `service-worker-loader.js` imported the *content script* chunk instead of the background chunk. Result: zero background listeners registered, no tab state, and the smoke test failed. Confirmed by inspecting `dist/service-worker-loader.js` and the emitted chunks.
+
+**Decision.** Rename the two entries to unique basenames: `src/background/service-worker.ts` and `src/content/content-script.ts`. The manifest points at the new paths. Functionally identical to the checklist; only the file names differ.
+
+**Consequences.** Anyone following the checklist literally will look for `index.ts`; the manifest is the source of truth.
+
+---
+
+## #3 — `web_accessible_resources` is non-empty (crxjs requirement)
+
+**Date:** 2026-09-14
+**Status:** Accepted
+**Source:** AGENT-CHECKLIST §2.1 (asks for none)
+
+**Context.** The checklist asks for `web_accessible_resources: none`. crxjs splits each content script into a tiny loader that `import()`s the real chunk at runtime; Chrome requires dynamically imported content-script chunks to be listed as web-accessible. The built manifest therefore lists the content-script and shared-message chunks.
+
+**Decision.** Accept the crxjs-generated `web_accessible_resources`. They only expose our own static bundles (no page-derived data, no remote code), so the security posture is unchanged. Revisit if we stop using crxjs or configure it to inline content scripts.
+
+**Consequences.** The zero-network test is the real guarantee that no page or extension data leaves the browser.
+
+---
+
+## #4 — e2e background readiness gate
+
+**Date:** 2026-09-14
+**Status:** Accepted
+
+**Context.** When Playwright launches a persistent context and immediately navigates, the first `webNavigation.onBeforeNavigate` can fire before the extension service worker has evaluated its module and registered listeners, so the event is missed. This is a test-harness race, not a product bug.
+
+**Decision.** The `extensionId` fixture polls `chrome.webNavigation.onBeforeNavigate.hasListeners()` in the service worker until the background module is ready before tests navigate.
+
+**Consequences.** Every e2e test that requests `extensionId` is race-free.
