@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Big page</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      const root = document.getElementById('root');
+      for (let i = 0; i < 20000; i += 1) { const d = document.createElement('div'); d.textContent = 'x'; root.appendChild(d); }
+    </script>
+  </body>
+</html>

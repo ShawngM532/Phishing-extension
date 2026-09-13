@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Persistent</title>
+  </head>
+  <body>
+    <h1>Persistent page</h1>
+    <form action="/login" method="post"><input type="password" name="p" /><button>Sign in</button></form>
+    <script>
+      setInterval(function () { document.body.innerHTML = '<p>reset</p>'; }, 500);
+    </script>
+  </body>
+</html>

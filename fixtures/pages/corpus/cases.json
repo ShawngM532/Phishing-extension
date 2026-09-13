@@ -1,0 +1,29 @@
+[
+  { "name": "phish-ip-login", "group": "phish", "file": "phish/ip-login.html", "url": "http://127.0.0.1:4321/corpus/phish/ip-login.html" },
+  { "name": "phish-external-action", "group": "phish", "file": "phish/external-action.html", "url": "http://paypa1-login.test:4321/corpus/phish/external-action.html" },
+  { "name": "phish-title-mismatch", "group": "phish", "file": "phish/title-mismatch.html", "url": "http://secure-verify.test:4321/corpus/phish/title-mismatch.html" },
+  { "name": "phish-http-login", "group": "phish", "file": "phish/http-login.html", "url": "http://login.example.test:4321/corpus/phish/http-login.html" },
+  { "name": "phish-hidden-inputs", "group": "phish", "file": "phish/hidden-inputs.html", "url": "http://account-update.test:4321/corpus/phish/hidden-inputs.html" },
+  { "name": "phish-urgency", "group": "phish", "file": "phish/urgency.html", "url": "http://wallet-verify.test:4321/corpus/phish/urgency.html" },
+  { "name": "phish-punycode", "group": "phish", "file": "phish/punycode.html", "url": "http://xn--pypal-4ve.paypal.evil.test:4321/corpus/phish/punycode.html" },
+  { "name": "phish-external-scripts", "group": "phish", "file": "phish/external-scripts.html", "url": "http://secure-login.test:4321/corpus/phish/external-scripts.html" },
+  { "name": "phish-copyright-mismatch", "group": "phish", "file": "phish/copyright-mismatch.html", "url": "http://paypal-secure.test:4321/corpus/phish/copyright-mismatch.html" },
+  { "name": "phish-meta-refresh", "group": "phish", "file": "phish/meta-refresh.html", "url": "http://verify-account.test:4321/corpus/phish/meta-refresh.html" },
+
+  { "name": "benign-article-1", "group": "benign", "file": "benign/article-1.html", "url": "http://example.test:4321/corpus/benign/article-1.html" },
+  { "name": "benign-article-2", "group": "benign", "file": "benign/article-2.html", "url": "http://example.test:4321/corpus/benign/article-2.html" },
+  { "name": "benign-article-3", "group": "benign", "file": "benign/article-3.html", "url": "http://example.test:4321/corpus/benign/article-3.html" },
+  { "name": "benign-article-4", "group": "benign", "file": "benign/article-4.html", "url": "http://example.test:4321/corpus/benign/article-4.html" },
+  { "name": "benign-article-5", "group": "benign", "file": "benign/article-5.html", "url": "http://example.test:4321/corpus/benign/article-5.html" },
+  { "name": "benign-login-same-origin", "group": "benign", "file": "benign/login-same-origin.html", "url": "http://example.test:4321/corpus/benign/login-same-origin.html" },
+  { "name": "benign-bank-login", "group": "benign", "file": "benign/bank-login.html", "url": "http://bank.example.test:4321/corpus/benign/bank-login.html" },
+  { "name": "benign-account-page", "group": "benign", "file": "benign/account-page.html", "url": "http://example.test:4321/corpus/benign/account-page.html" },
+  { "name": "benign-contact", "group": "benign", "file": "benign/contact.html", "url": "http://example.test:4321/corpus/benign/contact.html" },
+  { "name": "benign-search", "group": "benign", "file": "benign/search.html", "url": "http://example.test:4321/corpus/benign/search.html" },
+
+  { "name": "edge-late-form", "group": "edge", "file": "edge/late-form.html", "url": "http://edge.test:4321/corpus/edge/late-form.html" },
+  { "name": "edge-many-iframes", "group": "edge", "file": "edge/many-iframes.html", "url": "http://edge.test:4321/corpus/edge/many-iframes.html" },
+  { "name": "edge-huge-dom", "group": "edge", "file": "edge/huge-dom.html", "url": "http://edge.test:4321/corpus/edge/huge-dom.html" },
+  { "name": "edge-base-href", "group": "edge", "file": "edge/base-href.html", "url": "http://edge.test:4321/corpus/edge/base-href.html" },
+  { "name": "edge-nuke-body", "group": "edge", "file": "edge/nuke-body.html", "url": "http://edge.test:4321/corpus/edge/nuke-body.html" }
+]

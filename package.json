@@ -1,6 +1,6 @@
 {
   "name": "sentinel",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Sentinel — real-time on-device phishing detection extension",
   "type": "module",
@@ -33,13 +33,16 @@
     ]
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.63.0",
     "@size-limit/file": "^13.1.1",
+    "@types/jsdom": "^30.0.0",
     "@types/node": "^22.0.0",
     "@vitest/coverage-v8": "^5.0.0",
     "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
+    "jsdom": "^30.0.1",
     "prettier": "^3.9.6",
     "size-limit": "^13.1.1",
     "tsx": "^4.23.13",

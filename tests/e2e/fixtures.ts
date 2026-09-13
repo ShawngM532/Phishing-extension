@@ -8,7 +8,23 @@ export const EXTENSION_PATH = join(HERE, '..', '..', 'apps', 'extension', 'dist'
 export const FIXTURE_ORIGIN = 'http://localhost:4321';
 export const EXTENSION_SCHEME = 'chrome-extension://';
 
-const HOST_ALIASES = ['paypa1-login.test', 'xero-secure-login.test', 'micros0ft-login.test'];
+const HOST_ALIASES = [
+  'paypa1-login.test',
+  'secure-verify.test',
+  'login.example.test',
+  'account-update.test',
+  'wallet-verify.test',
+  'evil.test',
+  '*.evil.test',
+  'secure-login.test',
+  'paypal-secure.test',
+  'verify-account.test',
+  'example.test',
+  'bank.example.test',
+  'edge.test',
+  'xero-secure-login.test',
+  'micros0ft-login.test',
+];
 const HOST_RESOLVER_RULES = HOST_ALIASES.map((host) => `MAP ${host} 127.0.0.1`).join(', ');
 
 /** Minimal shape of the extension's TabState, kept local so e2e does not import app code. */
@@ -22,6 +38,7 @@ export interface E2ETabState {
   dismissed: boolean;
   extractorVersion: number;
   modelVersion: number | null;
+  timings?: { stage1Ms?: number; stage2Ms?: number };
 }
 
 export const test = base.extend<{ context: BrowserContext; extensionId: string }>({
