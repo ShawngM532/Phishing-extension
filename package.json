@@ -22,6 +22,7 @@
     "bench": "pnpm --filter @sentinel/features bench",
     "bench:features": "pnpm --filter @sentinel/features bench",
     "size": "size-limit",
+    "icons": "node scripts/generate-icons.mjs",
     "pack:zip": "node scripts/pack-zip.mjs",
     "features:golden": "tsx packages/features/bin/golden.ts",
     "extract": "tsx packages/features/bin/extract.ts"
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.63.0",
     "@size-limit/file": "^13.1.1",
     "@types/node": "^22.0.0",
     "@vitest/coverage-v8": "^5.0.0",
