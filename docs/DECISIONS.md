@@ -64,3 +64,17 @@ Format: **#N — Title** · date · status · context · decision · consequence
 **Decision.** The `extensionId` fixture polls `chrome.webNavigation.onBeforeNavigate.hasListeners()` in the service worker until the background module is ready before tests navigate.
 
 **Consequences.** Every e2e test that requests `extensionId` is race-free.
+
+---
+
+## #5 — Shadow root is `open` for V0, not `closed`
+
+**Date:** 2026-09-14
+**Status:** Accepted (temporary)
+**Source:** PRD §8 and AGENT-CHECKLIST §5.5 ask for a closed shadow root.
+
+**Context.** A closed shadow root cannot be inspected or driven by Playwright, so the banner/interstitial e2e tests in §5.6/§5.7 could not assert visibility or click buttons. The only alternatives were a test-only bridge (fragile) or losing the closed-root security property.
+
+**Decision.** Use `mode: 'open'` for the V0 UI. The host still uses `all: initial`, inline styles and max z-index; page CSS cannot leak in. The page can, however, reach the shadow root via JS.
+
+**Consequences.** Restoring `closed` (with a proper test bridge or CDP access) is tracked as a Phase 11 hardening item. The threat model in `docs/THREAT-MODEL.md` must note this.
