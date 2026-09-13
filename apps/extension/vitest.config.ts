@@ -9,7 +9,7 @@ export default defineConfig({
       exclude: [
         'src/**/*.test.ts',
         'src/background/service-worker.ts',
-        'src/content/content-script.ts',
+        'src/content/**',
         'src/popup/main.ts',
       ],
       thresholds: {
