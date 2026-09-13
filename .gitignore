@@ -1,0 +1,42 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.pnpm-store/
+
+# Rust
+target/
+packages/engine-wasm/pkg/
+**/*.rs.bk
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+pipeline/.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Data / model artifacts (large, generated)
+pipeline/data/
+models/
+*.parquet
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Local env
+.env
+.env.local
