@@ -1,10 +1,11 @@
-import { EXTRACTOR_VERSION } from '@sentinel/features';
+import { EXTRACTOR_VERSION, parseUrl } from '@sentinel/features';
 import type { Verdict } from '@sentinel/heuristics';
 
 import { isMessage } from '../shared/messages';
 import { createTabState } from '../shared/types';
 import { clearBadge, setBadge } from './badge';
-import { setAllowlisted } from './settings';
+import { heuristicEngine } from './engine';
+import { getSettings, setAllowlisted } from './settings';
 import { clearTabState, getTabState, patchTabState, setTabState } from './tab-state';
 
 const UNKNOWN_VERDICT: Verdict = {
@@ -63,8 +64,27 @@ async function handleMessage(
       if (tabId === undefined) return { state: null };
       return { state: await getTabState(tabId) };
     }
-    case 'SCORE_REQUEST':
-      return { verdict: UNKNOWN_VERDICT };
+    case 'SCORE_REQUEST': {
+      const { url, features } = message.payload;
+      const settings = await getSettings();
+      const etld1 = parseUrl(url)?.etld1 ?? null;
+      const allowlisted = etld1 !== null && settings.allowlist.includes(etld1);
+
+      const verdict = heuristicEngine.score({
+        url,
+        features,
+        extractorVersion: EXTRACTOR_VERSION,
+        thresholds: settings.thresholds,
+        allowlisted,
+      });
+
+      const tabId = sender.tab?.id;
+      if (tabId !== undefined) {
+        await patchTabState(tabId, { stage2: verdict, final: verdict, url });
+        await setBadge(tabId, verdict.level);
+      }
+      return { verdict };
+    }
     case 'SET_ALLOWLIST':
       return { allowlist: await setAllowlisted(message.payload.etld1, message.payload.allow) };
     case 'PROCEED': {
