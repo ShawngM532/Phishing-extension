@@ -8,8 +8,8 @@ export default defineConfig({
       include: ['src/**/*.ts'],
       exclude: [
         'src/**/*.test.ts',
-        'src/background/index.ts',
-        'src/content/index.ts',
+        'src/background/service-worker.ts',
+        'src/content/content-script.ts',
         'src/popup/main.ts',
       ],
       thresholds: {
