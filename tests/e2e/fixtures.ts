@@ -17,7 +17,7 @@ export interface E2ETabState {
   url: string;
   stage1: { level: string } | null;
   stage2: { level: string } | null;
-  final: { level: string } | null;
+  final: { level: string; engine?: string } | null;
   proceeded: boolean;
   dismissed: boolean;
   extractorVersion: number;
