@@ -15,9 +15,25 @@
           <span class="switch__label">Enabled</span>
         </label>
       </header>
-      <main id="verdict" class="popup__verdict">
-        <p class="popup__placeholder">No verdict yet.</p>
-      </main>
+
+      <main id="verdict" class="popup__verdict"></main>
+
+      <section class="popup__section">
+        <label class="switch">
+          <input id="allowlist-toggle" type="checkbox" />
+          <span class="switch__label">Trust this site</span>
+        </label>
+      </section>
+
+      <section class="popup__section">
+        <label class="popup__label" for="check-url">Check a link</label>
+        <div class="popup__check-row">
+          <input id="check-url" type="url" placeholder="example.com" />
+          <button id="check-button" type="button">Quick check</button>
+        </div>
+        <div id="check-result" class="quick" role="status"></div>
+      </section>
+
       <footer id="footer" class="popup__footer"></footer>
     </div>
     <script type="module" src="./main.ts"></script>
