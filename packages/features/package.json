@@ -13,6 +13,6 @@
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "bench": "vitest bench --run"
+    "bench": "vitest bench --run --passWithNoTests"
   }
 }

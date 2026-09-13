@@ -1,0 +1,48 @@
+{
+  "name": "sentinel",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Sentinel — real-time on-device phishing detection extension",
+  "type": "module",
+  "packageManager": "pnpm@10.33.2",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @sentinel/extension dev",
+    "build": "pnpm -r --if-present build",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:unit": "pnpm -r --if-present test",
+    "test:coverage": "pnpm -r --if-present test:coverage",
+    "check": "pnpm format:check && pnpm typecheck && pnpm lint && pnpm test:coverage",
+    "test:e2e": "playwright test",
+    "bench": "pnpm --filter @sentinel/features bench",
+    "bench:features": "pnpm --filter @sentinel/features bench",
+    "size": "size-limit",
+    "pack:zip": "node scripts/pack-zip.mjs",
+    "features:golden": "tsx packages/features/bin/golden.ts",
+    "extract": "tsx packages/features/bin/extract.ts"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@size-limit/file": "^13.1.1",
+    "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^5.0.0",
+    "eslint": "^10.10.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.6",
+    "size-limit": "^13.1.1",
+    "tsx": "^4.23.13",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.70.0",
+    "vitest": "^5.0.0"
+  }
+}

@@ -24,6 +24,9 @@ pipeline/data/
 models/
 *.parquet
 
+# Build artifacts
+artifacts/
+
 # Playwright
 test-results/
 playwright-report/
