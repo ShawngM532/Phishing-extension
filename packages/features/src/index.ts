@@ -1,3 +1,5 @@
+export * from './version';
+
 export const PACKAGE_NAME = '@sentinel/features';
 
 export function placeholder(): string {
