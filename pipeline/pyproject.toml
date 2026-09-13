@@ -1,7 +1,7 @@
 [project]
 name = "sentinel-pipeline"
 version = "0.1.0"
-description = "Add your description here"
+description = "Sentinel offline data collection, feature extraction, training and export pipeline"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -20,3 +20,14 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.16.7",
 ]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
