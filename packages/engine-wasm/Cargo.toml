@@ -1,0 +1,23 @@
+[package]
+name = "sentinel-engine"
+version = "0.0.0"
+edition = "2021"
+description = "Sentinel WASM inference engine (tree ensemble evaluator)"
+license = "UNLICENSED"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+
+[dev-dependencies]
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = [
+  "-Oz",
+  "--enable-bulk-memory",
+  "--enable-nontrapping-float-to-int",
+  "--enable-reference-types",
+]
