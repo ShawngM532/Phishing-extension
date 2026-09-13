@@ -1,0 +1,17 @@
+[
+  {
+    "name": "WASM inference engine",
+    "path": ["packages/engine-wasm/pkg/*.wasm"],
+    "limit": "1 MB"
+  },
+  {
+    "name": "model.bin",
+    "path": ["apps/extension/public/model.bin"],
+    "limit": "600 KB"
+  },
+  {
+    "name": "Total extension dist",
+    "path": ["apps/extension/dist/**/*"],
+    "limit": "3 MB"
+  }
+]
