@@ -27,3 +27,11 @@ export interface Verdict {
 }
 
 export const DEFAULT_THRESHOLDS: Thresholds = { medium: 0.35, high: 0.75 };
+
+/** Extra context available to rules and reason copy beyond the raw feature vector. */
+export interface ScoreContext {
+  /** eTLD+1 of the page, or null when unknown. */
+  etld1: string | null;
+  /** Brand token the page appears to imitate, or null. */
+  brandToken: string | null;
+}
