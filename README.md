@@ -399,6 +399,13 @@ From `apps/extension/manifest.config.ts` (MV3):
 after the first render pass). `web_accessible_resources` ends up non-empty
 in the **built** manifest because `@crxjs/vite-plugin` needs its
 content-script loader chunks to be web-accessible ([Decision #3](docs/DECISIONS.md)).
+A Vite `closeBundle` plugin then drops the `.map` entries from that list, so
+only the loader chunks are exposed. `use_dynamic_url` had to stay off (it
+breaks crxjs's loader, which resolves the static path) and `matches` cannot be
+narrowed below `<all_urls>` because the content script runs on every site. The
+residual fingerprinting risk is recorded in
+[Decision #7](docs/DECISIONS.md); `tests/e2e/fingerprint.spec.ts` asserts the
+`.map` resources are absent from the built manifest.
 
 ---
 

@@ -104,3 +104,22 @@ Because programmatic `element.click()` produces an untrusted event, the specs dr
 - The E2E job now builds with `pnpm build:e2e`; the default `pnpm build` stays production.
 - axe can no longer traverse the root directly, so the a11y specs mirror the shadow HTML into a temporary open shadow root before analysis (same markup, same inline styles).
 - A dedicated spec (`tests/e2e/shadow-root.spec.ts`) asserts `document.querySelector('sentinel-root')?.shadowRoot === null` in the page world.
+
+---
+
+## #7 — Web-accessible resources stay; dynamic URL rejected
+
+**Date:** 2026-09-23
+**Status:** Accepted
+**Source:** AGENT-CHECKLIST-v1 §1.5; amends #3.
+
+**Context.** `@crxjs/vite-plugin` splits each content script into a tiny loader that `import()`s the real chunk, so those chunks must be listed in `web_accessible_resources` (ADR #3). A page can therefore probe for `chrome-extension://<id>/assets/<chunk>` and detect that Sentinel is installed. We cannot remove the entries without replacing crxjs or inlining the content script, and `matches` cannot be narrowed below `<all_urls>` because the content script runs on every site.
+
+**Decision.** Keep the crxjs-generated entries and reduce the surface only where crxjs allows: a Vite `closeBundle` plugin (`hardenWebAccessibleResources` in `apps/extension/vite.config.ts`) drops the `.map` source maps from the list.
+
+`use_dynamic_url: true` was attempted and **reverted**: crxjs's loader calls `chrome.runtime.getURL("assets/content-script….js")`, which resolves the static path, and Chrome then refuses it ("Resources must be listed in web_accessible_resources"), so the content script never runs — verified by the page-console error and failing e2e spec. Narrowing `matches` would likewise break injection on unlisted sites. Both are accepted residual risks.
+
+**Consequences.**
+
+- The extension is still detectable: a page can observe content-script injection and can fetch the listed web-accessible chunks. This residual risk is accepted for V0/V1 given the on-device, zero-network privacy model — nothing about the user or page is exposed, and the chunks contain no page-derived data.
+- `tests/e2e/fingerprint.spec.ts` asserts the built manifest lists no `.map` resources (the hardening we could apply).
