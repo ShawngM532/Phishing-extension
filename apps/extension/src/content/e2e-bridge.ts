@@ -106,6 +106,14 @@ export function installE2EBridge(getRoot: () => ShadowRoot): void {
     const query: E2EUiQuery = {};
     if (typeof typed.selector === 'string') query.selector = typed.selector;
     if (typeof typed.text === 'string') query.text = typed.text;
+
+    if (typed.action === 'click-programmatic') {
+      const target = findTarget(root, query);
+      if (target instanceof HTMLElement) target.click();
+      sendResponse(queryUi(root, query));
+      return true;
+    }
+
     sendResponse(queryUi(root, query));
     return true;
   });

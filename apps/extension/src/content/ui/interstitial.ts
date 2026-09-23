@@ -1,5 +1,7 @@
 import type { Verdict } from '@sentinel/heuristics';
 
+import { onTrustedClick } from './trusted';
+
 export interface InterstitialHandlers {
   onGoBack: () => void;
   onProceed: () => void;
@@ -10,7 +12,7 @@ function button(label: string, className: string, onClick: () => void): HTMLButt
   element.type = 'button';
   element.className = `btn ${className}`;
   element.textContent = label;
-  element.addEventListener('click', onClick);
+  onTrustedClick(element, onClick);
   return element;
 }
 
@@ -73,7 +75,7 @@ export function showInterstitial(
   overlay.append(card);
   root.append(overlay);
 
-  continueLink.addEventListener('click', () => {
+  onTrustedClick(continueLink, () => {
     card.replaceChildren();
 
     const confirmHeadline = document.createElement('h1');

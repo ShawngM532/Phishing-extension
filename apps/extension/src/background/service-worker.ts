@@ -170,8 +170,15 @@ async function handleMessage(
       return { allowlist };
     }
     case 'PROCEED': {
-      const tabId = message.payload.tabId ?? sender.tab?.id;
-      if (tabId !== undefined) await patchTabState(tabId, { proceeded: true });
+      const senderTabId = sender.tab?.id;
+      const requestedTabId = message.payload.tabId;
+      if (
+        senderTabId === undefined ||
+        (requestedTabId !== undefined && requestedTabId !== senderTabId)
+      ) {
+        return { ok: true };
+      }
+      await patchTabState(senderTabId, { proceeded: true });
       return { ok: true };
     }
     case 'DISMISS': {

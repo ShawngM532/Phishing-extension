@@ -209,6 +209,20 @@ export async function waitForE2eUi(
   return last;
 }
 
+/**
+ * Fires an untrusted programmatic `element.click()` inside the isolated world.
+ * Used to prove the trusted-input guard ignores synthetic events.
+ */
+export async function e2eProgrammaticClick(
+  context: BrowserContext,
+  page: { url(): string },
+  query: E2EUiQuery,
+): Promise<E2EUiResult> {
+  const tabId = await tabIdForUrl(context, page.url());
+  if (tabId === null) return EMPTY_E2E_UI;
+  return sendE2E(context, tabId, { type: 'E2E_UI', action: 'click-programmatic', ...query });
+}
+
 /** Clicks an element inside the closed shadow root with a real (trusted) mouse event. */
 export async function e2eClick(
   context: BrowserContext,

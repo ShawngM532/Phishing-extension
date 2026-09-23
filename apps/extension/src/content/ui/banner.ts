@@ -1,5 +1,7 @@
 import type { Verdict } from '@sentinel/heuristics';
 
+import { isTrustedEvent, onTrustedClick } from './trusted';
+
 export interface BannerHandlers {
   onDismiss: () => void;
   onAllowlist: () => void;
@@ -10,7 +12,7 @@ function button(label: string, className: string, onClick: () => void): HTMLButt
   element.type = 'button';
   element.className = `btn ${className}`;
   element.textContent = label;
-  element.addEventListener('click', onClick);
+  onTrustedClick(element, onClick);
   return element;
 }
 
@@ -51,6 +53,7 @@ export function showBanner(
 
   banner.append(text, actions);
   banner.addEventListener('keydown', (event) => {
+    if (!isTrustedEvent(event)) return;
     if (event.key === 'Escape') {
       event.preventDefault();
       handlers.onDismiss();
