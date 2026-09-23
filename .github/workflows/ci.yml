@@ -27,6 +27,12 @@ jobs:
       - run: pnpm check
       - run: pnpm build
       - run: pnpm size
+      - name: Assert the E2E-only test hook is absent from the production build
+        run: |
+          if grep -R --include='*.js' "E2E_UI" apps/extension/dist; then
+            echo "::error::E2E test hook leaked into the production build"
+            exit 1
+          fi
 
   wasm:
     name: Rust / WASM
@@ -74,7 +80,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm build
+      - run: pnpm build:e2e
       - run: xvfb-run --auto-servernum pnpm test:e2e
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}

@@ -70,7 +70,7 @@ Format: **#N — Title** · date · status · context · decision · consequence
 ## #5 — Shadow root is `open` for V0, not `closed`
 
 **Date:** 2026-09-14
-**Status:** Accepted (temporary)
+**Status:** Superseded by #6 (2026-09-23)
 **Source:** PRD §8 and AGENT-CHECKLIST §5.5 ask for a closed shadow root.
 
 **Context.** A closed shadow root cannot be inspected or driven by Playwright, so the banner/interstitial e2e tests in §5.6/§5.7 could not assert visibility or click buttons. The only alternatives were a test-only bridge (fragile) or losing the closed-root security property.
@@ -78,3 +78,29 @@ Format: **#N — Title** · date · status · context · decision · consequence
 **Decision.** Use `mode: 'open'` for the V0 UI. The host still uses `all: initial`, inline styles and max z-index; page CSS cannot leak in. The page can, however, reach the shadow root via JS.
 
 **Consequences.** Restoring `closed` (with a proper test bridge or CDP access) is tracked as a Phase 11 hardening item. The threat model in `docs/THREAT-MODEL.md` must note this.
+
+---
+
+## #6 — Shadow root is `closed`, with an isolated-world E2E bridge
+
+**Date:** 2026-09-23
+**Status:** Accepted
+**Supersedes:** #5
+**Source:** AGENT-CHECKLIST-v1 §1.1; PRD §8.
+
+**Context.** ADR #5 chose an open shadow root so Playwright could inspect and drive the warning UI, accepting that page script could reach the root. The attacker controls the page, so an open root lets it click "continue", strip `readonly`/`inert`, or otherwise defeat the block. The checklist makes closing the root a Phase 1 security requirement.
+
+**Decision.** Attach the root with `mode: 'closed'` (`content/ui/host.ts`) and keep the reference module-private. The E2E suite drives the UI through a test-only bridge (`content/e2e-bridge.ts`) that:
+
+- is installed only when the build flag `__SENTINEL_E2E__` is true, set by Vite `--mode e2e` (`build:e2e` script);
+- is a `chrome.runtime.onMessage` listener in the content script's isolated world, reached from the spec via `chrome.tabs.sendMessage(tabId, …, { frameId: 0 })` — never a page-world global;
+- supports querying a selector or text (count/visibility/rect), returning the shadow HTML for an axe mirror, and clicking via coordinates.
+
+Because programmatic `element.click()` produces an untrusted event, the specs drive trusted clicks with `page.mouse.click(x, y)` at the rect returned by the bridge.
+
+**Consequences.**
+
+- Production builds contain no bridge: CI greps `apps/extension/dist` for `E2E_UI` and fails if it appears.
+- The E2E job now builds with `pnpm build:e2e`; the default `pnpm build` stays production.
+- axe can no longer traverse the root directly, so the a11y specs mirror the shadow HTML into a temporary open shadow root before analysis (same markup, same inline styles).
+- A dedicated spec (`tests/e2e/shadow-root.spec.ts`) asserts `document.querySelector('sentinel-root')?.shadowRoot === null` in the page world.

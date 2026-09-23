@@ -121,3 +121,104 @@ export async function waitForTabState(
   }
   return last;
 }
+
+/** Shape returned by the E2E-only bridge in `apps/extension/src/content/e2e-bridge.ts`. */
+export interface E2EUiResult {
+  count: number;
+  visible: boolean;
+  text: string | null;
+  html: string | null;
+  rect: { x: number; y: number; width: number; height: number } | null;
+}
+
+export interface E2EUiQuery {
+  selector?: string;
+  text?: string;
+}
+
+const EMPTY_E2E_UI: E2EUiResult = {
+  count: 0,
+  visible: false,
+  text: null,
+  html: null,
+  rect: null,
+};
+
+async function sendE2E(
+  context: BrowserContext,
+  tabId: number,
+  payload: Record<string, unknown>,
+): Promise<E2EUiResult> {
+  const worker = await serviceWorker(context);
+  const result = await worker.evaluate<
+    E2EUiResult | null,
+    { tabId: number; payload: Record<string, unknown> }
+  >(
+    async (args) => {
+      try {
+        return await chrome.tabs.sendMessage(args.tabId, args.payload, { frameId: 0 });
+      } catch {
+        return null;
+      }
+    },
+    {
+      tabId,
+      payload,
+    },
+  );
+  return result ?? EMPTY_E2E_UI;
+}
+
+/** Queries the closed shadow root through the isolated-world bridge. */
+export async function e2eUi(
+  context: BrowserContext,
+  page: { url(): string },
+  query: E2EUiQuery,
+): Promise<E2EUiResult> {
+  const tabId = await tabIdForUrl(context, page.url());
+  if (tabId === null) return EMPTY_E2E_UI;
+  return sendE2E(context, tabId, { type: 'E2E_UI', action: 'query', ...query });
+}
+
+/** Returns the full shadow-root HTML (used for axe on an open mirror). */
+export async function e2eShadowHtml(
+  context: BrowserContext,
+  page: { url(): string },
+): Promise<string> {
+  const tabId = await tabIdForUrl(context, page.url());
+  if (tabId === null) return '';
+  const result = await sendE2E(context, tabId, { type: 'E2E_UI', action: 'html' });
+  return result.html ?? '';
+}
+
+/** Polls the bridge until the query matches `predicate` (default: visible and present). */
+export async function waitForE2eUi(
+  context: BrowserContext,
+  page: { url(): string },
+  query: E2EUiQuery,
+  predicate: (result: E2EUiResult) => boolean = (result) => result.count > 0 && result.visible,
+  timeoutMs = 5_000,
+): Promise<E2EUiResult> {
+  const deadline = Date.now() + timeoutMs;
+  let last = EMPTY_E2E_UI;
+  while (Date.now() < deadline) {
+    last = await e2eUi(context, page, query);
+    if (predicate(last)) return last;
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+  return last;
+}
+
+/** Clicks an element inside the closed shadow root with a real (trusted) mouse event. */
+export async function e2eClick(
+  context: BrowserContext,
+  page: { url(): string; mouse: { click(x: number, y: number): Promise<void> } },
+  query: E2EUiQuery,
+): Promise<void> {
+  const result = await waitForE2eUi(context, page, query);
+  if (result.rect === null) {
+    throw new Error(`e2eClick: target not found for ${JSON.stringify(query)}`);
+  }
+  const { x, y, width, height } = result.rect;
+  await page.mouse.click(x + width / 2, y + height / 2);
+}

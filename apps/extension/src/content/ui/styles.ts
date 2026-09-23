@@ -13,7 +13,7 @@ export const UI_STYLES = `
 .banner__text { flex: 1; }
 .banner__text strong { font-weight: 700; }
 .banner__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-.chip { background: rgba(255,255,255,0.18); border-radius: 10px; padding: 2px 8px; font-size: 12px; }
+.chip { background: rgba(0,0,0,0.22); border-radius: 10px; padding: 2px 8px; font-size: 12px; }
 .banner__actions { display: flex; gap: 8px; flex-shrink: 0; }
 
 .btn {

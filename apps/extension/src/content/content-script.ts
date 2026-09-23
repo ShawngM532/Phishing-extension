@@ -2,6 +2,7 @@ import { extractStage2, parseUrl } from '@sentinel/features';
 import type { Verdict } from '@sentinel/heuristics';
 
 import { sendMessage } from '../shared/messages';
+import { installE2EBridge } from './e2e-bridge';
 import { installSubmitGuard } from './submit-guard';
 import { showBanner } from './ui/banner';
 import { clearUi, getShadowRoot } from './ui/host';
@@ -158,6 +159,10 @@ async function restoreState(): Promise<void> {
 
 function init(): void {
   if (!shouldRunHere()) return;
+
+  if (__SENTINEL_E2E__) {
+    installE2EBridge(getShadowRoot);
+  }
 
   installSubmitGuard({
     shouldBlock: () => currentVerdict?.level === 'HIGH' && !proceeded,

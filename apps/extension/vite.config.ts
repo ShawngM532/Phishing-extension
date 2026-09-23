@@ -3,8 +3,11 @@ import { defineConfig } from 'vite';
 
 import manifest from './manifest.config.ts';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [crx({ manifest })],
+  define: {
+    __SENTINEL_E2E__: JSON.stringify(mode === 'e2e'),
+  },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
@@ -16,4 +19,4 @@ export default defineConfig({
     strictPort: true,
     hmr: { port: 5173 },
   },
-});
+}));

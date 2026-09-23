@@ -1,4 +1,4 @@
-import { expect, serviceWorker, test } from './fixtures';
+import { e2eClick, e2eUi, expect, serviceWorker, test, waitForE2eUi } from './fixtures';
 
 const MEDIUM_URL = 'http://login.example.test:4321/corpus/phish/http-login.html';
 const HIGH_URL = 'http://127.0.0.1:4321/corpus/phish/ip-login.html';
@@ -12,13 +12,15 @@ test('a MEDIUM verdict shows a dismissable banner that persists across reload', 
   const page = await context.newPage();
   await page.goto(MEDIUM_URL);
 
-  await expect(page.locator('.banner')).toBeVisible();
-  await page.getByRole('button', { name: 'Dismiss' }).click();
-  await expect(page.locator('.banner')).toHaveCount(0);
+  await waitForE2eUi(context, page, { selector: '.banner' });
+  await e2eClick(context, page, { text: 'Dismiss' });
+  await expect
+    .poll(async () => (await e2eUi(context, page, { selector: '.banner' })).count)
+    .toBe(0);
 
   await page.reload();
   await page.waitForTimeout(600);
-  await expect(page.locator('.banner')).toHaveCount(0);
+  expect((await e2eUi(context, page, { selector: '.banner' })).count).toBe(0);
 });
 
 test('allowlisting a site removes the warning', async ({ context, extensionId }) => {
@@ -26,14 +28,16 @@ test('allowlisting a site removes the warning', async ({ context, extensionId })
 
   const page = await context.newPage();
   await page.goto(MEDIUM_URL);
-  await expect(page.locator('.banner')).toBeVisible();
+  await waitForE2eUi(context, page, { selector: '.banner' });
 
-  await page.getByRole('button', { name: 'This site is safe' }).click();
-  await expect(page.locator('.banner')).toHaveCount(0);
+  await e2eClick(context, page, { text: 'This site is safe' });
+  await expect
+    .poll(async () => (await e2eUi(context, page, { selector: '.banner' })).count)
+    .toBe(0);
 
   await page.reload();
   await page.waitForTimeout(600);
-  await expect(page.locator('.banner')).toHaveCount(0);
+  expect((await e2eUi(context, page, { selector: '.banner' })).count).toBe(0);
 });
 
 test('a HIGH verdict blocks password entry until the user proceeds', async ({
@@ -45,14 +49,16 @@ test('a HIGH verdict blocks password entry until the user proceeds', async ({
   const page = await context.newPage();
   await page.goto(HIGH_URL);
 
-  await expect(page.locator('.overlay')).toBeVisible();
+  await waitForE2eUi(context, page, { selector: '.overlay' });
   const password = page.locator('input[type=password]').first();
   await expect(password).toHaveJSProperty('readOnly', true);
 
-  await page.getByRole('button', { name: 'I understand the risk, continue' }).click();
-  await page.getByRole('button', { name: 'Continue anyway' }).click();
+  await e2eClick(context, page, { text: 'I understand the risk, continue' });
+  await e2eClick(context, page, { text: 'Continue anyway' });
 
-  await expect(page.locator('.overlay')).toHaveCount(0);
+  await expect
+    .poll(async () => (await e2eUi(context, page, { selector: '.overlay' })).count)
+    .toBe(0);
   await expect(password).toHaveJSProperty('readOnly', false);
 });
 
@@ -64,7 +70,7 @@ test('form submission is blocked while a HIGH verdict is active', async ({
 
   const page = await context.newPage();
   await page.goto(HIGH_URL);
-  await expect(page.locator('.overlay')).toBeVisible();
+  await waitForE2eUi(context, page, { selector: '.overlay' });
 
   const prevented = await page.evaluate(() => {
     const form = document.querySelector('form');
@@ -96,6 +102,6 @@ test('global disable suppresses all warnings', async ({ context, extensionId }) 
   await page.goto(HIGH_URL);
   await page.waitForTimeout(1000);
 
-  await expect(page.locator('.overlay')).toHaveCount(0);
-  await expect(page.locator('.banner')).toHaveCount(0);
+  expect((await e2eUi(context, page, { selector: '.overlay' })).count).toBe(0);
+  expect((await e2eUi(context, page, { selector: '.banner' })).count).toBe(0);
 });

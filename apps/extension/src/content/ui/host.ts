@@ -16,7 +16,11 @@ function watchReattach(): void {
   reattachObserver.observe(document.documentElement, { childList: true });
 }
 
-/** Returns the closed shadow root, creating (and re-attaching) the host as needed. */
+/**
+ * Returns the closed shadow root, creating (and re-attaching) the host as needed.
+ * The root is closed so page script cannot reach the warning UI; tests drive it
+ * through the isolated-world E2E bridge (see `content/e2e-bridge.ts`).
+ */
 export function getShadowRoot(): ShadowRoot {
   if (
     hostElement !== null &&
@@ -29,7 +33,7 @@ export function getShadowRoot(): ShadowRoot {
   hostElement?.remove();
   hostElement = document.createElement(HOST_TAG);
   hostElement.setAttribute('data-sentinel', 'host');
-  shadowRoot = hostElement.attachShadow({ mode: 'open' });
+  shadowRoot = hostElement.attachShadow({ mode: 'closed' });
 
   const style = document.createElement('style');
   style.textContent = UI_STYLES;
