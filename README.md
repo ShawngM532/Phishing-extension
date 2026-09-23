@@ -225,6 +225,25 @@ long), `service-worker.ts` finalizes on stage 1 alone after a
 `STAGE2_TIMEOUT_MS` (1500ms) timeout — so the badge/UI never blocks
 indefinitely waiting on DOM extraction.
 
+### 4. Threat model
+
+The defender does not trust the page. The attacker controls the DOM and its
+JavaScript, so every HIGH-block guarantee assumes the page is hostile:
+
+- The warning UI lives in a **closed** shadow root (`ui/host.ts`) reached only
+  through an isolated-world E2E bridge that is absent from production, so page
+  script cannot read or click it (task 1.1).
+- Only **trusted** input (`event.isTrusted`) can proceed, dismiss or allowlist;
+  synthetic `click()`/`dispatchEvent()` calls are ignored (task 1.2).
+- While HIGH and un-proceeded, `tamper-guard.ts` re-asserts `inert`,
+  `readonly`, `autocomplete="off"` and the overlay if the page strips them or
+  injects new password inputs (task 1.3).
+- The **primary** guarantee is that typing into credential fields is
+  impossible — `readonly` + `inert` plus capture-phase `keydown`/`paste`/
+  `beforeinput` guards (`submit-guard.ts`). Submit-blocking is best-effort on
+  top, because page script can exfiltrate with `fetch()` without a form
+  (task 1.4).
+
 ---
 
 ## Function / module reference
@@ -246,7 +265,7 @@ indefinitely waiting on DOM extraction.
 | File                 | Key exports                                                                                                      | What it does                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `content-script.ts`  | `hasPasswordField`, `shouldRunHere`, `render`, `requestScore`, `installMutationObserver`, `restoreState`, `init` | `shouldRunHere` restricts sub-frame execution to frames with a password field. `requestScore` extracts stage-2 features, sends `SCORE_REQUEST`, and re-renders. `render` picks interstitial vs. banner vs. nothing based on the verdict. `installMutationObserver` debounces (250ms) re-scoring (max 3x) when a form/password field is added post-load. `init` guards against double-injection via `window.__sentinelInjected`. |
-| `submit-guard.ts`    | `installSubmitGuard`                                                                                             | Capture-phase listeners on `submit` and Enter-in-password-field that block the action while a `HIGH` verdict is active and not yet proceeded.                                                                                                                                                                                                                                                                                   |
+| `submit-guard.ts`    | `installSubmitGuard`, `isCredentialField`                                                                        | Guarantee hierarchy while HIGH and un-proceeded: **typing into credential fields is impossible** (capture-phase `keydown`/`paste`/`beforeinput` cancelled on `document` for password, `current-password`/`new-password`, `one-time-code` and `cc-*` fields, on top of `readonly` + `inert`); **submit-blocking is best-effort** on top, because page script can `fetch()` without submitting a form.                            |
 | `ui/host.ts`         | `getShadowRoot`, `clearUi`                                                                                       | Creates a `<sentinel-root>` custom element with a **closed** shadow root (see [Decision #6](docs/DECISIONS.md)), keeps the root reference module-private, and re-attaches the host if the page removes it. Test builds expose it only through the isolated-world E2E bridge.                                                                                                                                                    |
 | `ui/banner.ts`       | `showBanner`                                                                                                     | Dismissable amber `MEDIUM` banner (`role="alertdialog"`) with top reasons, an allowlist button, and Escape-to-dismiss. All buttons and the Escape key only act on trusted input (`event.isTrusted`), so page script cannot dismiss or allowlist.                                                                                                                                                                                |
 | `ui/interstitial.ts` | `blockPage`, `showInterstitial`                                                                                  | Full-screen `HIGH` overlay: makes the page `inert`, makes password fields read-only with `autocomplete="off"`, and requires a two-step "I understand the risk, continue" confirmation to proceed. Every action (proceed, confirm-proceed, "Go back") requires trusted input (`event.isTrusted`).                                                                                                                                |
