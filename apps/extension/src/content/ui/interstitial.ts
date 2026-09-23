@@ -16,7 +16,11 @@ function button(label: string, className: string, onClick: () => void): HTMLButt
   return element;
 }
 
-/** Makes password fields read-only and the page beneath inert. */
+/**
+ * Makes password fields read-only and the page beneath inert. Also disables
+ * autofill on `type=password` fields, since password managers can fill a block
+ * without any user keystroke.
+ */
 export function blockPage(): void {
   document.body.setAttribute('inert', '');
   for (const input of Array.from(document.querySelectorAll('input'))) {
@@ -24,6 +28,9 @@ export function blockPage(): void {
     const autocomplete = input.getAttribute('autocomplete')?.toLowerCase() ?? '';
     if (type === 'password' || autocomplete.includes('password')) {
       input.readOnly = true;
+    }
+    if (type === 'password') {
+      input.setAttribute('autocomplete', 'off');
     }
   }
 }

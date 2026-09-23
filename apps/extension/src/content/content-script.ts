@@ -4,6 +4,7 @@ import type { Verdict } from '@sentinel/heuristics';
 import { sendMessage } from '../shared/messages';
 import { installE2EBridge } from './e2e-bridge';
 import { installSubmitGuard } from './submit-guard';
+import { installTamperGuard } from './tamper-guard';
 import { showBanner } from './ui/banner';
 import { clearUi, getShadowRoot } from './ui/host';
 import { showInterstitial } from './ui/interstitial';
@@ -168,6 +169,16 @@ function init(): void {
     shouldBlock: () => currentVerdict?.level === 'HIGH' && !proceeded,
     onBlocked: () => {
       if (currentVerdict !== null) render();
+    },
+  });
+
+  installTamperGuard({
+    shouldBlock: () => currentVerdict?.level === 'HIGH' && !proceeded,
+    ensureBlocked: () => {
+      if (currentVerdict?.level !== 'HIGH' || proceeded) return;
+      if (getShadowRoot().querySelector('[data-sentinel-ui="interstitial"]') === null) {
+        render();
+      }
     },
   });
 
