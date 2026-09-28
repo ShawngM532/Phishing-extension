@@ -1,38 +1,53 @@
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import {
-  cachedSettings,
-  initSettingsCache,
-  setCachedSettings,
-} from '../src/background/settings-cache';
 import { DEFAULT_SETTINGS } from '../src/background/settings';
-import { installChromeMock } from './chrome-mock';
+import { installChromeMock, type ChromeMockHandle } from './chrome-mock';
+
+const CUSTOM = {
+  enabled: false,
+  allowlist: ['xero.com'],
+  thresholds: { medium: 0.4, high: 0.8 },
+};
+
+const UPDATED = {
+  enabled: true,
+  allowlist: ['a.com'],
+  thresholds: { medium: 0.3, high: 0.7 },
+};
 
 describe('settings cache', () => {
-  it('starts with defaults and can be overwritten', () => {
-    installChromeMock();
-    const custom = {
-      enabled: false,
-      allowlist: ['xero.com'],
-      thresholds: { medium: 0.4, high: 0.8 },
-    };
-    setCachedSettings(custom);
-    expect(cachedSettings()).toEqual(custom);
-    setCachedSettings(DEFAULT_SETTINGS);
+  let handle: ChromeMockHandle;
+
+  beforeEach(() => {
+    handle = installChromeMock();
+    vi.resetModules();
+  });
+
+  it('starts with defaults and can be overwritten', async () => {
+    const cache = await import('../src/background/settings-cache');
+    cache.setCachedSettings(CUSTOM);
+    expect(cache.cachedSettings()).toEqual(CUSTOM);
+
+    cache.setCachedSettings(DEFAULT_SETTINGS);
+    expect(cache.cachedSettings()).toEqual(DEFAULT_SETTINGS);
   });
 
   it('loads from storage and follows changes', async () => {
-    const handle = installChromeMock();
-    handle.sync.store.set('settings', {
-      enabled: false,
-      allowlist: [],
-      thresholds: { medium: 0.3, high: 0.7 },
-    });
-    await initSettingsCache();
-    expect(cachedSettings().enabled).toBe(false);
+    handle.sync.store.set('settings', CUSTOM);
+    const cache = await import('../src/background/settings-cache');
 
-    const updated = { enabled: true, allowlist: ['a.com'], thresholds: { medium: 0.3, high: 0.7 } };
-    handle.emitChange({ settings: { newValue: updated } }, 'sync');
-    expect(cachedSettings()).toEqual(updated);
+    await cache.initSettingsCache();
+    expect(cache.cachedSettings()).toEqual(CUSTOM);
+
+    handle.emitChange({ settings: { newValue: UPDATED } }, 'sync');
+    expect(cache.cachedSettings()).toEqual(UPDATED);
+  });
+
+  it('settingsReady resolves after the cache loads', async () => {
+    handle.sync.store.set('settings', CUSTOM);
+    const cache = await import('../src/background/settings-cache');
+
+    await cache.settingsReady();
+    expect(cache.cachedSettings()).toEqual(CUSTOM);
   });
 });

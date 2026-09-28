@@ -66,7 +66,10 @@ export function installChromeMock(): ChromeMockHandle {
     query: vi.fn(() => Promise.resolve([])),
     remove: vi.fn(() => Promise.resolve()),
   };
-  const runtime = { sendMessage: vi.fn(() => Promise.resolve({ state: null })) };
+  const runtime = {
+    sendMessage: vi.fn(() => Promise.resolve({ state: null })),
+    getURL: vi.fn((path: string) => `chrome-extension://test/${path}`),
+  };
 
   const chromeMock = {
     storage: {

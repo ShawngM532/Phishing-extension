@@ -1,19 +1,29 @@
-import { EXTRACTOR_VERSION, extractStage1 } from '@sentinel/features';
+import { EXTRACTOR_VERSION, extractStage1, FEATURE_INDEX, parseUrl } from '@sentinel/features';
 import type { Verdict } from '@sentinel/heuristics';
 
 import { isMessage } from '../shared/messages';
 import { createTabState } from '../shared/types';
 import { clearBadge, setBadge } from './badge';
+import { bloomReady, cachedBloom, initBloom } from './bloom-cache';
 import { heuristicEngine } from './engine';
 import { mergeVerdicts, scoreFeatures } from './scoring';
 import { setAllowlisted, updateSettings } from './settings';
-import { cachedSettings, initSettingsCache } from './settings-cache';
+import { cachedSettings, initSettingsCache, settingsReady } from './settings-cache';
 import { clearTabState, getTabState, patchTabState, setTabState } from './tab-state';
 
 const STAGE2_TIMEOUT_MS = 1500;
 const stage2Timers = new Map<number, ReturnType<typeof setTimeout>>();
 
 void initSettingsCache();
+void initBloom();
+
+/** Overwrites feature #23 with the loaded Bloom result (content scripts cannot read it). */
+function applyTrancoFeature(vector: Float32Array, url: string): void {
+  const bloom = cachedBloom();
+  if (bloom === null) return;
+  const etld1 = parseUrl(url)?.etld1 ?? null;
+  vector[FEATURE_INDEX.in_tranco_50k] = etld1 !== null && bloom.has(etld1) ? 1 : 0;
+}
 
 function isScorable(url: string): boolean {
   return url.startsWith('http://') || url.startsWith('https://');
@@ -38,6 +48,9 @@ function clearStage2Timer(tabId: number): void {
 }
 
 async function runStage1(tabId: number, url: string): Promise<void> {
+  await settingsReady();
+  await bloomReady();
+
   const settings = cachedSettings();
   if (!settings.enabled) {
     await setBadge(tabId, 'UNKNOWN');
@@ -45,7 +58,7 @@ async function runStage1(tabId: number, url: string): Promise<void> {
   }
 
   const start = performance.now();
-  const features = extractStage1(url);
+  const features = extractStage1(url, { bloom: cachedBloom() });
   if (features === null) return;
 
   const verdict = scoreFeatures(heuristicEngine, url, features, settings);
@@ -134,7 +147,7 @@ async function handleMessage(
     case 'MANUAL_CHECK': {
       const { url } = message.payload;
       const settings = cachedSettings();
-      const features = extractStage1(url);
+      const features = extractStage1(url, { bloom: cachedBloom() });
       if (features === null) return { verdict: unknownVerdict() };
       return { verdict: scoreFeatures(heuristicEngine, url, features, settings) };
     }
@@ -144,7 +157,9 @@ async function handleMessage(
       if (!settings.enabled) return { verdict: unknownVerdict() };
 
       const { url, features } = message.payload;
-      const stage2 = scoreFeatures(heuristicEngine, url, Float32Array.from(features), settings);
+      const vector = Float32Array.from(features);
+      applyTrancoFeature(vector, url);
+      const stage2 = scoreFeatures(heuristicEngine, url, vector, settings);
 
       const current = tabId === undefined ? null : await getTabState(tabId);
       const final = mergeVerdicts(current?.stage1 ?? null, stage2) ?? stage2;

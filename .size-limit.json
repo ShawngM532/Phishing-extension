@@ -10,6 +10,11 @@
     "limit": "600 KB"
   },
   {
+    "name": "Tranco bloom filter",
+    "path": ["apps/extension/public/tranco.bloom"],
+    "limit": "200 KB"
+  },
+  {
     "name": "Total extension dist",
     "path": ["apps/extension/dist/**/*"],
     "limit": "3 MB"
