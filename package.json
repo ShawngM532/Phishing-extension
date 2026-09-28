@@ -26,7 +26,8 @@
     "icons": "node scripts/generate-icons.mjs",
     "pack:zip": "node scripts/pack-zip.mjs",
     "features:golden": "tsx packages/features/bin/golden.ts",
-    "extract": "tsx packages/features/bin/extract.ts"
+    "extract": "tsx packages/features/bin/extract.ts",
+    "score": "tsx scripts/score.ts"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
