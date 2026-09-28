@@ -11,3 +11,5 @@ playwright-report
 test-results
 PRD-*.md
 AGENT-CHECKLIST*.md
+docs/EVAL.md
+docs/eval-results.json

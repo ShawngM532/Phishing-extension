@@ -27,7 +27,8 @@
     "pack:zip": "node scripts/pack-zip.mjs",
     "features:golden": "tsx packages/features/bin/golden.ts",
     "extract": "tsx packages/features/bin/extract.ts",
-    "score": "tsx scripts/score.ts"
+    "score": "tsx scripts/score.ts",
+    "evaluate": "uv run --directory pipeline python run_eval.py --corpus"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

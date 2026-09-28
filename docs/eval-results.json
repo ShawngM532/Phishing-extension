@@ -1,0 +1,284 @@
+{
+  "title": "Evaluation \u2014 fixture corpus (V0 heuristic baseline)",
+  "summary": {
+    "n": 20,
+    "n_phishing": 10,
+    "n_benign": 10,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "fpr_at_recall_95": 0.0,
+    "at_medium": {
+      "tp": 10,
+      "fp": 0,
+      "tn": 10,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "fpr": 0.0,
+      "accuracy": 1.0
+    },
+    "at_high": {
+      "tp": 9,
+      "fp": 0,
+      "tn": 10,
+      "fn": 1,
+      "precision": 1.0,
+      "recall": 0.9,
+      "f1": 0.9474,
+      "fpr": 0.0,
+      "accuracy": 0.95
+    },
+    "sweep": [
+      {
+        "threshold": 0.0,
+        "precision": 0.5,
+        "recall": 1.0,
+        "fpr": 1.0
+      },
+      {
+        "threshold": 0.05,
+        "precision": 0.5,
+        "recall": 1.0,
+        "fpr": 1.0
+      },
+      {
+        "threshold": 0.1,
+        "precision": 0.5,
+        "recall": 1.0,
+        "fpr": 1.0
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.5,
+        "recall": 1.0,
+        "fpr": 1.0
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.5,
+        "recall": 1.0,
+        "fpr": 1.0
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.5,
+        "recall": 1.0,
+        "fpr": 1.0
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.5,
+        "recall": 1.0,
+        "fpr": 1.0
+      },
+      {
+        "threshold": 0.35,
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.4,
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.45,
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.5,
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.55,
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.6,
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.65,
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.7,
+        "precision": 1.0,
+        "recall": 1.0,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.75,
+        "precision": 1.0,
+        "recall": 0.9,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.8,
+        "precision": 1.0,
+        "recall": 0.7,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.85,
+        "precision": 1.0,
+        "recall": 0.4,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.9,
+        "precision": 1.0,
+        "recall": 0.1,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 0.95,
+        "precision": 0.0,
+        "recall": 0.0,
+        "fpr": 0.0
+      },
+      {
+        "threshold": 1.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "fpr": 0.0
+      }
+    ]
+  },
+  "rows": [
+    {
+      "url": "http://127.0.0.1:4321/corpus/phish/ip-login.html",
+      "label": 1,
+      "score": 0.829,
+      "level": "HIGH"
+    },
+    {
+      "url": "http://paypa1-login.test:4321/corpus/phish/external-action.html",
+      "label": 1,
+      "score": 0.813952,
+      "level": "HIGH"
+    },
+    {
+      "url": "http://secure-verify.test:4321/corpus/phish/title-mismatch.html",
+      "label": 1,
+      "score": 0.937756,
+      "level": "HIGH"
+    },
+    {
+      "url": "http://login.example.test:4321/corpus/phish/http-login.html",
+      "label": 1,
+      "score": 0.7263999999999999,
+      "level": "MEDIUM"
+    },
+    {
+      "url": "http://account-update.test:4321/corpus/phish/hidden-inputs.html",
+      "label": 1,
+      "score": 0.79651,
+      "level": "HIGH"
+    },
+    {
+      "url": "http://wallet-verify.test:4321/corpus/phish/urgency.html",
+      "label": 1,
+      "score": 0.875512,
+      "level": "HIGH"
+    },
+    {
+      "url": "http://xn--pypal-4ve.paypal.evil.test:4321/corpus/phish/punycode.html",
+      "label": 1,
+      "score": 0.7510239999999999,
+      "level": "HIGH"
+    },
+    {
+      "url": "http://secure-login.test:4321/corpus/phish/external-scripts.html",
+      "label": 1,
+      "score": 0.837208,
+      "level": "HIGH"
+    },
+    {
+      "url": "http://paypal-secure.test:4321/corpus/phish/copyright-mismatch.html",
+      "label": 1,
+      "score": 0.85465,
+      "level": "HIGH"
+    },
+    {
+      "url": "http://verify-account.test:4321/corpus/phish/meta-refresh.html",
+      "label": 1,
+      "score": 0.885088,
+      "level": "HIGH"
+    },
+    {
+      "url": "http://example.test:4321/corpus/benign/article-1.html",
+      "label": 0,
+      "score": 0.31599999999999995,
+      "level": "LOW"
+    },
+    {
+      "url": "http://example.test:4321/corpus/benign/article-2.html",
+      "label": 0,
+      "score": 0.31599999999999995,
+      "level": "LOW"
+    },
+    {
+      "url": "http://example.test:4321/corpus/benign/article-3.html",
+      "label": 0,
+      "score": 0.31599999999999995,
+      "level": "LOW"
+    },
+    {
+      "url": "http://example.test:4321/corpus/benign/article-4.html",
+      "label": 0,
+      "score": 0.31599999999999995,
+      "level": "LOW"
+    },
+    {
+      "url": "http://example.test:4321/corpus/benign/article-5.html",
+      "label": 0,
+      "score": 0.31599999999999995,
+      "level": "LOW"
+    },
+    {
+      "url": "http://example.test:4321/corpus/benign/login-same-origin.html",
+      "label": 0,
+      "score": 0.31599999999999995,
+      "level": "LOW"
+    },
+    {
+      "url": "http://bank.example.test:4321/corpus/benign/bank-login.html",
+      "label": 0,
+      "score": 0.31599999999999995,
+      "level": "LOW"
+    },
+    {
+      "url": "http://example.test:4321/corpus/benign/account-page.html",
+      "label": 0,
+      "score": 0.31599999999999995,
+      "level": "LOW"
+    },
+    {
+      "url": "http://example.test:4321/corpus/benign/contact.html",
+      "label": 0,
+      "score": 0.31599999999999995,
+      "level": "LOW"
+    },
+    {
+      "url": "http://example.test:4321/corpus/benign/search.html",
+      "label": 0,
+      "score": 0.31599999999999995,
+      "level": "LOW"
+    }
+  ],
+  "errors": []
+}
