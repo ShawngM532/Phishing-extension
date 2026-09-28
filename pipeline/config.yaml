@@ -1,0 +1,38 @@
+# Sentinel collection pipeline configuration.
+#
+# Loaded and validated by pipeline/settings.py (pydantic). Paths are relative to
+# the `pipeline/` directory. The full collection store lives under `data/` and is
+# gitignored; only a small frozen fixture subset is committed.
+
+openphish:
+  url: 'https://openphish.com/feed.txt'
+  timeout_seconds: 30
+  max_urls: 5000
+
+tranco:
+  # `null` means "resolve the latest list id via the Tranco API at build time".
+  list_id: null
+  top_n: 1000000
+  bloom_top: 50000
+  benign_sample: 20000
+  download_base: 'https://tranco-list.eu/download/{list_id}/{count}'
+
+crawl:
+  concurrency: 16
+  timeout_seconds: 10
+  user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36'
+  block_resource_types: [image, media, font, stylesheet]
+  max_html_bytes: 2000000
+  retries: 1
+  headless: true
+
+paths:
+  data_dir: data
+  raw_dir: data/raw
+  html_dir: data/html
+  crawled_dir: data/crawled
+
+collection:
+  every_hours: 6
+  # Phishing pages die fast; the PRD wants crawls within ~6h of feed publication.
+  phishing_within_hours: 6

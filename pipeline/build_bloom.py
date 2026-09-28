@@ -119,10 +119,7 @@ def read_tranco(path: Path, count: int) -> list[str]:
         for row in reader:
             if not row:
                 continue
-            if len(row) >= 2 and row[0].isdigit():
-                host = row[1]
-            else:
-                host = row[0]
+            host = row[1] if len(row) >= 2 and row[0].isdigit() else row[0]
             etld1 = registered_domain(host)
             if etld1 is not None:
                 domains.append(etld1)
@@ -167,7 +164,9 @@ def write_outputs(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build the Tranco top-N Bloom filter")
     parser.add_argument("--top", type=int, default=50_000)
-    parser.add_argument("--input", type=Path, default=None, help="local Tranco CSV (skips download)")
+    parser.add_argument(
+        "--input", type=Path, default=None, help="local Tranco CSV (skips download)"
+    )
     parser.add_argument("--list-id", default=None)
     parser.add_argument("--out", type=Path, default=Path("../apps/extension/public"))
     args = parser.parse_args()
