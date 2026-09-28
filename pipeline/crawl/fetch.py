@@ -20,6 +20,7 @@ from storage import (
     crawled_snapshot_path,
     crawled_urls,
     ensure_dirs,
+    read_raw_benign,
     read_raw_phishing,
     store_html,
     write_parquet,
@@ -27,6 +28,8 @@ from storage import (
 
 SOURCE = "openphish"
 LABEL_PHISHING = 1
+BENIGN_SOURCE = "curated"
+LABEL_BENIGN = 0
 
 
 def _empty_frame() -> pd.DataFrame:
@@ -130,12 +133,16 @@ def crawl_urls(settings: Settings, urls: list[str], source: str, label: int) -> 
     return pd.DataFrame(records, columns=CRAWLED_COLUMNS)
 
 
-def crawl_pending_phishing(
-    settings: Settings, when: datetime | None = None, limit: int | None = None
+def _crawl_pending(
+    settings: Settings,
+    reader,
+    source: str,
+    label: int,
+    when: datetime | None,
+    limit: int | None,
 ) -> pd.DataFrame:
-    """Crawl raw phishing URLs that have not been crawled yet, write a timestamped parquet."""
     ensure_dirs(settings)
-    raw = read_raw_phishing(settings)
+    raw = reader(settings)
     done = crawled_urls(settings)
 
     seen: set[str] = set()
@@ -152,6 +159,20 @@ def crawl_pending_phishing(
     if not pending:
         return _empty_frame()
 
-    frame = crawl_urls(settings, pending, SOURCE, LABEL_PHISHING)
+    frame = crawl_urls(settings, pending, source, label)
     write_parquet(frame, crawled_snapshot_path(settings, when or datetime.now(UTC)))
     return frame
+
+
+def crawl_pending_phishing(
+    settings: Settings, when: datetime | None = None, limit: int | None = None
+) -> pd.DataFrame:
+    """Crawl raw phishing URLs not yet crawled, write a timestamped parquet."""
+    return _crawl_pending(settings, read_raw_phishing, SOURCE, LABEL_PHISHING, when, limit)
+
+
+def crawl_pending_benign(
+    settings: Settings, when: datetime | None = None, limit: int | None = None
+) -> pd.DataFrame:
+    """Crawl curated benign URLs not yet crawled, write a timestamped parquet."""
+    return _crawl_pending(settings, read_raw_benign, BENIGN_SOURCE, LABEL_BENIGN, when, limit)

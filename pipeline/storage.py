@@ -48,6 +48,10 @@ def raw_phishing_path(settings: Settings, day: date) -> Path:
     return settings.resolve(settings.paths.raw_dir) / f"openphish_{day.isoformat()}.parquet"
 
 
+def raw_benign_path(settings: Settings, day: date) -> Path:
+    return settings.resolve(settings.paths.raw_dir) / f"benign_{day.isoformat()}.parquet"
+
+
 def crawled_path(settings: Settings, day: date) -> Path:
     return settings.resolve(settings.paths.crawled_dir) / f"crawl_{day.isoformat()}.parquet"
 
@@ -61,9 +65,11 @@ def html_dir(settings: Settings) -> Path:
     return settings.resolve(settings.paths.html_dir)
 
 
-def read_parquet_dir(directory: Path, columns: list[str] | None = None) -> pd.DataFrame:
-    """Concatenate every parquet file in a directory, tolerating an empty store."""
-    files = sorted(directory.glob("*.parquet")) if directory.exists() else []
+def read_parquet_glob(
+    directory: Path, pattern: str, columns: list[str] | None = None
+) -> pd.DataFrame:
+    """Concatenate every parquet file matching `pattern`, tolerating an empty store."""
+    files = sorted(directory.glob(pattern)) if directory.exists() else []
     if not files:
         return pd.DataFrame(columns=columns or [])
 
@@ -78,16 +84,29 @@ def read_parquet_dir(directory: Path, columns: list[str] | None = None) -> pd.Da
 
 
 def read_raw_phishing(settings: Settings) -> pd.DataFrame:
-    return read_parquet_dir(settings.resolve(settings.paths.raw_dir), RAW_PHISHING_COLUMNS)
+    return read_parquet_glob(
+        settings.resolve(settings.paths.raw_dir), "openphish_*.parquet", RAW_PHISHING_COLUMNS
+    )
+
+
+def read_raw_benign(settings: Settings) -> pd.DataFrame:
+    return read_parquet_glob(
+        settings.resolve(settings.paths.raw_dir), "benign_*.parquet", RAW_PHISHING_COLUMNS
+    )
 
 
 def read_crawled(settings: Settings) -> pd.DataFrame:
-    return read_parquet_dir(settings.resolve(settings.paths.crawled_dir), CRAWLED_COLUMNS)
+    return read_parquet_glob(
+        settings.resolve(settings.paths.crawled_dir), "*.parquet", CRAWLED_COLUMNS
+    )
 
 
 def seen_urls(settings: Settings) -> set[str]:
-    frame = read_raw_phishing(settings)
-    return set(frame["url"].dropna().astype(str))
+    phishing = read_raw_phishing(settings)
+    benign = read_raw_benign(settings)
+    urls = set(phishing["url"].dropna().astype(str))
+    urls.update(benign["url"].dropna().astype(str))
+    return urls
 
 
 def crawled_urls(settings: Settings) -> set[str]:

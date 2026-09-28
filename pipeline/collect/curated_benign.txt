@@ -1,0 +1,134 @@
+# Curated benign login / account pages (label 0).
+#
+# These are real, well-known sites used to measure the false-positive rate on the
+# sites people actually log into. One URL per line; `#` starts a comment.
+# Kept reachable by collect/verify_urls.py.
+
+# --- New Zealand banks ---
+https://www.anz.co.nz/personal/online-banking/
+https://www.asb.co.nz/login
+https://online.asb.co.nz/
+https://www.bnz.co.nz/personal-banking/login
+https://www.kiwibank.co.nz/
+https://www.westpac.co.nz/
+https://www.tsb.co.nz/
+https://www.heartland.co.nz/
+https://www.rabobank.co.nz/
+https://www.co-operativebank.co.nz/
+https://www.sbsbank.co.nz/
+
+# --- Australian banks ---
+https://www.commbank.com.au/netbank
+https://www.nab.com.au/personal/online-banking
+https://www.westpac.com.au/online-banking/
+https://www.anz.com.au/online-banking/
+https://www.stgeorge.com.au/online-banking
+https://www.bankwest.com.au/
+https://www.macquarie.com.au/
+https://www.ubank.com.au/
+https://www.ing.com.au/
+https://www.bendigobank.com.au/
+
+# --- Accounting / SaaS ---
+https://login.xero.com/
+https://www.myob.com/
+https://accounts.intuit.com/
+https://www.sage.com/
+
+# --- New Zealand government ---
+https://www.realme.govt.nz/
+https://myir.ird.govt.nz/
+https://www.ird.govt.nz/
+https://www.workandincome.govt.nz/
+https://www.studylink.govt.nz/
+https://www.nzta.govt.nz/
+https://www.acc.co.nz/
+https://www.health.govt.nz/
+https://www.govt.nz/
+
+# --- Australian government ---
+https://www.ato.gov.au/
+https://my.gov.au/
+
+# --- Email, SSO, identity ---
+https://accounts.google.com/
+https://login.microsoftonline.com/
+https://login.live.com/
+https://outlook.office.com/
+https://appleid.apple.com/
+https://www.icloud.com/
+https://login.salesforce.com/
+https://www.okta.com/login/
+https://auth0.com/
+https://id.atlassian.com/login
+
+# --- Consumer / social ---
+https://www.amazon.com/ap/signin
+https://www.facebook.com/login
+https://www.instagram.com/accounts/login/
+https://www.linkedin.com/login
+https://twitter.com/i/flow/login
+https://www.netflix.com/login
+https://www.paypal.com/signin
+https://www.ebay.com/signin
+https://www.spotify.com/login
+https://discord.com/login
+https://www.reddit.com/login/
+https://www.pinterest.com/login/
+https://zoom.us/signin
+https://www.dropbox.com/login
+https://github.com/login
+https://gitlab.com/users/sign_in
+https://slack.com/signin
+https://www.docusign.com/
+https://www.figma.com/login
+https://www.canva.com/login
+https://www.notion.so/login
+https://trello.com/login
+https://www.cloudflare.com/login
+https://vercel.com/login
+https://www.digitalocean.com/login
+https://www.godaddy.com/
+https://www.shopify.com/login
+https://www.squarespace.com/login
+https://www.wix.com/login
+https://wordpress.com/log-in
+
+# --- Telecommunications ---
+https://www.spark.co.nz/
+https://www.one.nz/
+https://www.2degrees.nz/
+https://www.skinny.co.nz/
+https://www.telstra.com.au/
+https://www.optus.com.au/
+
+# --- Universities (NZ / AU) ---
+https://www.auckland.ac.nz/
+https://www.otago.ac.nz/
+https://www.canterbury.ac.nz/
+https://www.wgtn.ac.nz/
+https://www.waikato.ac.nz/
+https://www.massey.ac.nz/
+https://www.aut.ac.nz/
+https://www.monash.edu/
+https://www.unimelb.edu.au/
+https://www.sydney.edu.au/
+https://www.unsw.edu.au/
+https://www.uq.edu.au/
+https://www.adelaide.edu.au/
+https://www.anu.edu.au/
+
+# --- Retail / services ---
+https://www.trademe.co.nz/
+https://www.airnewzealand.co.nz/
+https://www.qantas.com/
+https://www.airbnb.com/
+https://www.booking.com/
+https://www.uber.com/
+https://www.thewarehouse.co.nz/
+https://www.woolworths.co.nz/
+https://www.paknsave.co.nz/
+https://www.mitre10.co.nz/
+https://www.briscoes.co.nz/
+https://www.noelleeming.co.nz/
+https://www.jbhifi.co.nz/
